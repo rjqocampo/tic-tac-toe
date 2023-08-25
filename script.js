@@ -21,7 +21,7 @@ const gameModule = (function() {
   const getGrids = () => grids;
   const getActivePlayer = () => activePlayer;
   const getScores = () => scores;
-  const getResults = () => {
+  const getRoundResults = () => {
     const storeResults = results;
     winner = null;
     return storeResults;
@@ -90,13 +90,12 @@ const gameModule = (function() {
       return;
     } else if (grids.every((grid) => grid !== 0)) {
       console.log('DRAW');
-      updateScores();
+      updateScores(null);
     }
   }
 
   function updateScores(mark) {
     if (mark === 'X') {
-      console.log('add x');
       scores.x++;
     } else if (mark === 'O') {
       console.log('add o');
@@ -105,13 +104,15 @@ const gameModule = (function() {
       console.log('add tie');
       scores.tie++;
     }
+    
+    results = mark;
   }
 
   return {
     getGrids,
     getActivePlayer, 
     getScores,
-    getResults,
+    getRoundResults,
     chooseMark, 
     placeMark, 
     checkWinner
@@ -136,6 +137,9 @@ const displayModule = (function() {
     showTurn();
     showGrids();
     showScores();
+    if (gameModule.getRoundResults() !== null) {
+      showPostRound(gameModule.getRoundResults());
+    }
   })
 
   function showGrids() {
@@ -172,6 +176,11 @@ const displayModule = (function() {
     xScore.textContent = x;
     oScore.textContent = o;
     tieScore.textContent = tie;
+  }
+
+  function showPostRound(results) {
+    console.log(`WINNER IS ${results}`);
+    // 
   }
 
   dialogPreRound.showModal();
