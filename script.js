@@ -16,14 +16,14 @@ const gameModule = (function() {
     tie: 0
   }
   let activePlayer = players[0];
-  let results = null;
+  let roundResults = null;
 
   const getGrids = () => grids;
   const getActivePlayer = () => activePlayer;
   const getScores = () => scores;
   const getRoundResults = () => {
-    const storeResults = results;
-    winner = null;
+    const storeResults = roundResults;
+    roundResults = null;
     return storeResults;
   }
 
@@ -57,7 +57,6 @@ const gameModule = (function() {
       } else {
         grids[index] = 2;
       }
-      console.log(`index: ${index}`)
       checkWinner();
       switchActivePlayer();
     }
@@ -67,7 +66,6 @@ const gameModule = (function() {
     for (let i = 0; i < 9; i += 3) {
       if (grids[i] === grids[i + 1] && grids[i] === grids[i + 2] && grids[i] !== 0) {
         console.log('ROW');
-        console.log(getActivePlayer().mark);
         updateScores(getActivePlayer().mark);
         return;
       }
@@ -76,7 +74,6 @@ const gameModule = (function() {
     for (let i = 0; i < 3; i++) {
       if (grids[i] === grids[i + 3] && grids[i] === grids[i + 6] && grids[i] !== 0) {
         console.log('COLUMN');
-        console.log(getActivePlayer().mark);
         updateScores(getActivePlayer().mark);
         return;
       }
@@ -85,7 +82,6 @@ const gameModule = (function() {
     if ((grids[0] === grids[4] && grids[0] === grids[8] && grids[0] !== 0) ||
         (grids[2] === grids[4] && grids[2] === grids[6] && grids[2] !== 0)) {
       console.log('DIAGONAL');
-      console.log(getActivePlayer().mark);
       updateScores(getActivePlayer().mark);
       return;
     } else if (grids.every((grid) => grid !== 0)) {
@@ -96,16 +92,17 @@ const gameModule = (function() {
 
   function updateScores(mark) {
     if (mark === 'X') {
+      console.log('Add score to X');
       scores.x++;
     } else if (mark === 'O') {
-      console.log('add o');
+      console.log('Add score to O');
       scores.o++;
     } else {
-      console.log('add tie');
+      console.log('Add score to TIE');
       scores.tie++;
     }
     
-    results = mark;
+    roundResults = mark;
   }
 
   return {
@@ -179,7 +176,7 @@ const displayModule = (function() {
   }
 
   function showPostRound(results) {
-    console.log(`WINNER IS ${results}`);
+    console.log(`Show post-round for ${results}`);
     // 
   }
 
