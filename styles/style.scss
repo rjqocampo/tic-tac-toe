@@ -4,7 +4,7 @@ $theme-light: #a9bec8;
 $theme-dark: #1e3640;
 $theme-darker: #1a2b33;
 
-$font-white: #ffffff8e;
+$font-white: #ffffff9f;
 $font-light: #a9bec8;
 $font-dark: #1a2b33;
 $font-black: #000000;
@@ -55,7 +55,7 @@ body {
 
 .wrapper {
   height: 100%;
-  background-color: $theme-dark;
+  background-color: $theme-darker;
 
   display: grid;
   grid-template-rows: 1fr 0fr;
@@ -164,23 +164,77 @@ body {
 /* -------- Tic Tac Toe -------- */
 
 .tic-tac-toe {
-  height: 100%;
+  display: grid;
+  align-items: center;
   header {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
+    align-items: center;
+    h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      justify-self: end;
+      span:first-child {
+        color: $theme-blue;
+      }
+      span:last-child {
+        color: $theme-yellow;
+      }
+    }
+    p {
+      font-size: 1.2rem;
+      color: $font-white;
+      text-align: center;
+      padding: 10px 20px;
+      border-radius: 8px;
+      box-shadow: 0px 5px 1px #111e24;
+
+      background-color: $theme-dark;
+    }
+    button {
+      background-color: $theme-light;
+      border: none;
+      border-radius: 4px;
+      box-shadow: 0px 3px 1px #7a868d;
+      justify-self: start;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      img {
+        height: 32px;
+        width: 32px;
+        padding: 5px;
+      }
+    }
   }
   main {
     display: grid;
-    grid-template: repeat(3, 220px)/repeat(3, 220px);
+    grid-template: repeat(3, 130px)/repeat(3, 130px);
     justify-content: center;
     justify-items: center;
     align-items: center;
-    gap: 10px;
+    gap: 25px;
     .grid {
-      background-color: $theme-darker;
+      font-size: 6rem;
+      font-weight: 900;
+      line-height: 1rem;
+      background-color: $theme-dark;
+      border-radius: 15px;
+      box-shadow: 0px 6px 1px #111e24;
       height: 100%;
       width: 100%;
+      
+      display: grid;
+      justify-content: center;
+      align-content: center;
+      &--x {
+        color: $theme-blue;
+      }
+      &--o {
+        color: $theme-yellow;
+      }
     }
   }
   footer {

@@ -53,10 +53,6 @@ const flowModule = (function () {
 
   let activePlayer = players[0];
 
-  function log() { // --------------------------- for testing
-    console.table(activePlayer);
-  }
-
   const getActivePlayer = () => activePlayer;
 
   function chooseMark(e) {
@@ -80,7 +76,7 @@ const flowModule = (function () {
   }
 
   return {
-    log, chooseMark, getActivePlayer, switchActivePlayer
+    chooseMark, getActivePlayer, switchActivePlayer
   }
 })();
 
@@ -101,13 +97,16 @@ const displayModule = (function() {
   function showGrids() {
     gameModule.getGrids().forEach((grid, index) => {
       const div = document.createElement('div');
-      div.setAttribute('class', 'grid');
       div.setAttribute('data-index', `${index}`);
 
       if (grid === 1) {
         div.textContent = 'X'
+        div.setAttribute('class', 'grid grid--x');
       } else if (grid === 2) {
         div.textContent = 'O'
+        div.setAttribute('class', 'grid grid--o');
+      } else {
+        div.setAttribute('class', 'grid');
       }
 
       main.appendChild(div);
