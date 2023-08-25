@@ -16,14 +16,23 @@ const gameModule = (function() {
 
   const getGrids = () => grids;
 
+  function placeMark(e) {
+    if (flowModule.getActivePlayer.mark === 'X') {
+      grids[e.target.getAttribute('data-index')] = 1;
+    } else {
+      grids[e.target.getAttribute('data-index')] = 2;
+    }
+    console.log(e.target.getAttribute('data-index'))
+    console.log(flowModule.getActivePlayer().mark)
+    console.table(grids);
+  }
+
   return {
-    getGrids
+    getGrids, placeMark
   }
 })();
 
 const flowModule = (function () {
-  let activePlayer = null;
-  
   const players = [
     {
       name: 'Player 1',
@@ -35,12 +44,16 @@ const flowModule = (function () {
     }
   ];
 
-  function log() {
+  let activePlayer = players[0];
+
+  function log() { // --------------------------- for testing
     console.table(activePlayer);
   }
 
-  function setMark(e) {
-    if(e.target.textContent === 'X') {
+  const getActivePlayer = () => activePlayer;
+
+  function chooseMark(e) {
+    if (e.target.textContent === 'X') {
       players[0].mark = 'X';
       players[1].mark = 'O';
     } else {
@@ -56,7 +69,7 @@ const flowModule = (function () {
   }
 
   return {
-    log, setMark
+    log, chooseMark, getActivePlayer
   }
 })();
 
@@ -67,13 +80,16 @@ const displayModule = (function() {
   const main = document.querySelector('main');
 
   buttonStartGame.addEventListener('click', () => dialogPreRound.close());
-  buttonChooseMark.addEventListener('click', flowModule.setMark);
-  
+  buttonChooseMark.addEventListener('click', flowModule.chooseMark);
+  main.addEventListener('click', (e) => {
+    gameModule.placeMark(e)
+  })
 
   function showGrids() {
-    gameModule.getGrids().forEach((grid) => {
+    gameModule.getGrids().forEach((grid, index) => {
       const div = document.createElement('div');
       div.setAttribute('class', 'grid');
+      div.setAttribute('data-index', `${index}`);
       main.appendChild(div);
     });
   }
