@@ -10,10 +10,16 @@ const gameModule = (function() {
       mark: 'O',
     }
   ];
+  let scores = {
+    x: 0,
+    o: 0,
+    tie: 0
+  }
   let activePlayer = players[0];
 
   const getGrids = () => grids;
   const getActivePlayer = () => activePlayer;
+  const getScores = () => scores;
 
   function setActivePlayer() {
     activePlayer = players.find(player => player.mark === 'X');
@@ -54,11 +60,13 @@ const gameModule = (function() {
   }
 
   function checkWinner() {
-
+    // grids.forEach((grid) => {
+    //   if
+    // })
   }
 
   return {
-    getGrids, chooseMark, getActivePlayer, placeMark
+    getGrids, getActivePlayer, getScores, chooseMark, placeMark
   }
 })();
 
@@ -66,6 +74,9 @@ const displayModule = (function() {
   const dialogPreRound = document.querySelector('.dialog-pre-round');
   const buttonStartGame = document.querySelector('.button-start-game');
   const buttonChooseMark = document.querySelector('.dialog-pre-round > div > div');
+  const xScore = document.querySelector('.x-score h3');
+  const oScore = document.querySelector('.o-score h3');
+  const tieScore = document.querySelector('.tie-score h3');
   const whosTurn = document.querySelector('.whos-turn');
   const main = document.querySelector('main');
 
@@ -108,7 +119,17 @@ const displayModule = (function() {
     whosTurn.textContent = `${gameModule.getActivePlayer().mark} TURN`;
   }
 
+  function showScores() {
+    let {x, o, tie} = gameModule.getScores();
+    console.log(x);
+    console.log(xScore);
+    xScore.textContent = x;
+    oScore.textContent = o;
+    tieScore.textContent = tie;
+  }
+
   dialogPreRound.showModal();
   showTurn();
   showGrids();
+  showScores();
 })();
