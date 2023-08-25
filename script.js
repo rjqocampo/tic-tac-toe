@@ -12,19 +12,26 @@ Default players[0]:
 */
 
 const gameModule = (function() {
-  const grids = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+  const grids = [0, 1, 2, 0, 0, 0, 0, 0, 0];
 
   const getGrids = () => grids;
 
   function placeMark(e) {
-    if (flowModule.getActivePlayer.mark === 'X') {
-      grids[e.target.getAttribute('data-index')] = 1;
-    } else {
-      grids[e.target.getAttribute('data-index')] = 2;
+    let index = e.target.getAttribute('data-index');
+    let mark = flowModule.getActivePlayer().mark;
+
+    if (grids[index] === 0) {
+      if (mark === 'X') {
+        grids[index] = 1;
+      } else {
+        grids[index] = 2;
+      }
+      console.log(index)
+      console.log(mark)
+      console.table(grids);
+    
+      flowModule.switchActivePlayer();
     }
-    console.log(e.target.getAttribute('data-index'))
-    console.log(flowModule.getActivePlayer().mark)
-    console.table(grids);
   }
 
   return {
@@ -68,8 +75,12 @@ const flowModule = (function () {
     activePlayer = players.find(player => player.mark === 'X');
   }
 
+  function switchActivePlayer() {
+    activePlayer = (activePlayer === players[0]) ? players[1] : players[0];
+  }
+
   return {
-    log, chooseMark, getActivePlayer
+    log, chooseMark, getActivePlayer, switchActivePlayer
   }
 })();
 
@@ -82,7 +93,9 @@ const displayModule = (function() {
   buttonStartGame.addEventListener('click', () => dialogPreRound.close());
   buttonChooseMark.addEventListener('click', flowModule.chooseMark);
   main.addEventListener('click', (e) => {
-    gameModule.placeMark(e)
+    gameModule.placeMark(e);
+    removeGrids();
+    showGrids();
   })
 
   function showGrids() {
@@ -90,6 +103,13 @@ const displayModule = (function() {
       const div = document.createElement('div');
       div.setAttribute('class', 'grid');
       div.setAttribute('data-index', `${index}`);
+
+      if (grid === 1) {
+        div.textContent = 'X'
+      } else if (grid === 2) {
+        div.textContent = 'O'
+      }
+
       main.appendChild(div);
     });
   }
