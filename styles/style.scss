@@ -1,3 +1,14 @@
+$theme-yellow: #f2b138;
+$theme-blue: #34c3be;
+$theme-light: #a9bec8;
+$theme-dark: #1e3640;
+$theme-darker: #1a2b33;
+
+$font-white: #ffffff8e;
+$font-light: #a9bec8;
+$font-dark: #1a2b33;
+$font-black: #000000;
+
 /* -------- CSS Reset -------- */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -24,10 +35,7 @@ font: inherit;
 vertical-align: baseline;
 }
 
-button,
-input,
-select,
-textarea {
+button {
 font-family: inherit;
 font-size: 100%;
 }
@@ -35,11 +43,151 @@ font-size: 100%;
 /* -------- Custom CSS -------- */
 
 body {
+  // font-family: 'Lato', sans-serif;
+  // font-family: 'Poppins', sans-serif;
+
+  font-family: 'Poppins',  system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   min-height: 100vh;
-  background-color: rebeccapurple;
+
+  display: grid;
+  grid-template-rows: 1fr;
 }
 
 .wrapper {
   height: 100%;
-  background-color: blanchedalmond;
+  background-color: $theme-dark;
+
+  display: grid;
+  grid-template-rows: 1fr 0fr;
+  align-content: space-between;
+}
+
+.wrapper-github{
+  a {
+      font-family:'Courier New', Courier, monospace;
+      font-weight: bold;
+      font-size: 0.7rem;
+      color: black;
+      text-decoration: none;
+      padding: 5px;
+
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      img {
+          padding: 0;
+          height: 25px;
+          width: 25px;
+      }
+      &:hover p {
+          display: none;
+      }
+      &:hover:after {
+          content: "Click to see code";
+      }
+  }
+}
+
+.dialog-pre-round{
+  color: $font-white;
+  border: none;
+  background-color: $theme-darker;
+  height: 500px;
+
+  // only set dialog to grid when open. if not, dialog persists even when closed
+  &[open] { 
+    display: grid;
+    justify-items: center;
+    align-content: center;
+    gap: 20px;
+  }
+  &::backdrop {
+    background-color: $theme-darker;
+  }
+  h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    span:first-child {
+      color: $theme-blue;
+    }
+    span:last-child {
+      color: $theme-yellow;
+    }
+  }
+  >div {
+    background-color: $theme-dark;
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0px 5px 1px #111f25;
+    padding: 15px 10px;
+    text-align: center;
+    h2 {
+      font-size: 1.2rem
+    }
+    h3 {
+      font-size: 0.8rem;
+    }
+    div {
+      background-color: $theme-darker;
+      padding: 5px;
+      margin: 10px;
+      border-radius: 8px;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      button {
+        font-size: 2rem;
+        padding: 5px 20px;
+        color: $font-white;
+        background-color: transparent;
+        border: none;
+        &:focus {
+          color: $font-dark;
+          background-color: $theme-light;
+          border-radius: 8px;
+          border: none;
+          outline-width: 0;
+        }
+      }
+    }
+  }
+  >button {
+    background-color: $theme-yellow;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 40px;
+    margin-top: 20px;
+    box-shadow: 0px 3px 1px #a77a27;
+  }
+}
+
+
+/* -------- Tic Tac Toe -------- */
+
+.tic-tac-toe {
+  height: 100%;
+  header {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+  }
+  main {
+    display: grid;
+    grid-template: repeat(3, 220px)/repeat(3, 220px);
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    gap: 10px;
+    .grid {
+      background-color: $theme-darker;
+      height: 100%;
+      width: 100%;
+    }
+  }
+  footer {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    justify-items: center;
+  }
 }

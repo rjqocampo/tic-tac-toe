@@ -24,21 +24,145 @@ time, mark, audio, video {
   vertical-align: baseline;
 }
 
-button,
-input,
-select,
-textarea {
+button {
   font-family: inherit;
   font-size: 100%;
 }
 
 /* -------- Custom CSS -------- */
 body {
+  font-family: "Poppins", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   min-height: 100vh;
-  background-color: rebeccapurple;
+  display: grid;
+  grid-template-rows: 1fr;
 }
 
 .wrapper {
   height: 100%;
-  background-color: blanchedalmond;
+  background-color: #1e3640;
+  display: grid;
+  grid-template-rows: 1fr 0fr;
+  align-content: space-between;
+}
+
+.wrapper-github a {
+  font-family: "Courier New", Courier, monospace;
+  font-weight: bold;
+  font-size: 0.7rem;
+  color: black;
+  text-decoration: none;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.wrapper-github a img {
+  padding: 0;
+  height: 25px;
+  width: 25px;
+}
+.wrapper-github a:hover p {
+  display: none;
+}
+.wrapper-github a:hover:after {
+  content: "Click to see code";
+}
+
+.dialog-pre-round {
+  color: rgba(255, 255, 255, 0.5568627451);
+  border: none;
+  background-color: #1a2b33;
+  height: 500px;
+}
+.dialog-pre-round[open] {
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  gap: 20px;
+}
+.dialog-pre-round::backdrop {
+  background-color: #1a2b33;
+}
+.dialog-pre-round h1 {
+  font-size: 3.5rem;
+  font-weight: bold;
+}
+.dialog-pre-round h1 span:first-child {
+  color: #34c3be;
+}
+.dialog-pre-round h1 span:last-child {
+  color: #f2b138;
+}
+.dialog-pre-round > div {
+  background-color: #1e3640;
+  width: 300px;
+  border-radius: 8px;
+  box-shadow: 0px 5px 1px #111f25;
+  padding: 15px 10px;
+  text-align: center;
+}
+.dialog-pre-round > div h2 {
+  font-size: 1.2rem;
+}
+.dialog-pre-round > div h3 {
+  font-size: 0.8rem;
+}
+.dialog-pre-round > div div {
+  background-color: #1a2b33;
+  padding: 5px;
+  margin: 10px;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.dialog-pre-round > div div button {
+  font-size: 2rem;
+  padding: 5px 20px;
+  color: rgba(255, 255, 255, 0.5568627451);
+  background-color: transparent;
+  border: none;
+}
+.dialog-pre-round > div div button:focus {
+  color: #1a2b33;
+  background-color: #a9bec8;
+  border-radius: 8px;
+  border: none;
+  outline-width: 0;
+}
+.dialog-pre-round > button {
+  background-color: #f2b138;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 40px;
+  margin-top: 20px;
+  box-shadow: 0px 3px 1px #a77a27;
+}
+
+/* -------- Tic Tac Toe -------- */
+.tic-tac-toe {
+  height: 100%;
+}
+.tic-tac-toe header {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+}
+.tic-tac-toe main {
+  display: grid;
+  grid-template: repeat(3, 220px)/repeat(3, 220px);
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
+  gap: 10px;
+}
+.tic-tac-toe main .grid {
+  background-color: #1a2b33;
+  height: 100%;
+  width: 100%;
+}
+.tic-tac-toe footer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  justify-items: center;
 }/*# sourceMappingURL=style.css.map */

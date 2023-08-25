@@ -4,20 +4,56 @@
     <title>Tic-Tac-Toe</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&family=Poppins:ital,wght@0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles/style.css">
     <script src="script.js" defer></script>
   </head>
   <body>
     <div class="wrapper">
-        <div class="tic-tac-toe">
-          <header></header>
-          <main></main>
-          <footer></footer>
+      <div class="tic-tac-toe">
+        <header>
+          <h1>XO</h1>
+          <p class="whos-turn">X TURN</p>
+          <button type="button">Restart</button>
+        </header>
+        <main>
+          <div class="grid"></div>
+          <div class="grid"></div>
+          <div class="grid"></div>
+          <div class="grid"></div>
+          <div class="grid"></div>
+          <div class="grid"></div>
+          <div class="grid"></div>
+          <div class="grid"></div>
+          <div class="grid"></div>
+        </main>
+        <footer>
+          <p class="x-score">0</p>
+          <p class="tie">0</p>
+          <p class="o-score">0</p>
+        </footer>
+      </div>
+      <div class="wrapper-github">
+        <a href="https://github.com/rjqocampo/tic-tac-toe" target="_blank" rel="noopener noreferrer">
+          <img src="img/git1.png" alt="Github icon. Silhouette of github's mascot.">
+          <p>By Rod John Ocampo</p>
+        </a>
+      </div>
+    </div>
+    
+    <dialog class="dialog-pre-round">
+      <h1><span>X</span><span>O</span></h1>
+      <div>
+        <h2>CHOOSE YOUR MARK</h2>
+        <h3>X WILL GO FIRST</h3>
+        <div>
+          <button type="button">X</button>
+          <button type="button">O</button>
         </div>
-        
-    </div>
-    <div class="wrapper-github">
-
-    </div>
+      </div>
+      <button type="button" class="button-pre-round">Start Game</button>
+    </dialog>
   </body>
 </html>
