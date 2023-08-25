@@ -93,9 +93,8 @@ body {
   border: none;
   background-color: $theme-darker;
   height: 500px;
-
-  // only set dialog to grid when open. if not, dialog persists even when closed
-  &[open] { 
+  
+  &[open] { // only set dialog to grid when open. if not, dialog persists even when closed
     display: grid;
     justify-items: center;
     align-content: center;
