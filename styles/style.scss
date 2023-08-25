@@ -63,30 +63,33 @@ body {
 }
 
 .wrapper-github{
+  width: 200px;
   a {
-      font-family:'Courier New', Courier, monospace;
-      font-weight: bold;
-      font-size: 0.7rem;
-      color: black;
-      text-decoration: none;
-      padding: 5px;
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 0.7rem;
+    color: white;
+    text-decoration: none;
+    padding: 5px;
 
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      img {
-          padding: 0;
-          height: 25px;
-          width: 25px;
-      }
-      &:hover p {
-          display: none;
-      }
-      &:hover:after {
-          content: "Click to see code";
-      }
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    img {
+        padding: 0;
+        height: 25px;
+        width: 25px;
+    }
+    &:hover p {
+        display: none;
+    }
+    &:hover:after {
+        content: "Click to see code";
+    }
   }
 }
+
+/* -------- Pre-round-------- */
 
 .dialog-pre-round{
   color: $font-white;
@@ -159,6 +162,8 @@ body {
     box-shadow: 0px 3px 1px #a77a27;
   }
 }
+
+/* -------- Post-round-------- */
 
 
 /* -------- Tic Tac Toe -------- */

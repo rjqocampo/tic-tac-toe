@@ -84,6 +84,7 @@ const displayModule = (function() {
   const dialogPreRound = document.querySelector('.dialog-pre-round');
   const buttonStartGame = document.querySelector('.button-start-game');
   const buttonChooseMark = document.querySelector('.dialog-pre-round > div > div');
+  const whosTurn = document.querySelector('.whos-turn');
   const main = document.querySelector('main');
 
   buttonStartGame.addEventListener('click', () => dialogPreRound.close());
@@ -91,6 +92,7 @@ const displayModule = (function() {
   main.addEventListener('click', (e) => {
     gameModule.placeMark(e);
     removeGrids();
+    showTurn();
     showGrids();
   })
 
@@ -119,6 +121,12 @@ const displayModule = (function() {
     }
   }
 
+  function showTurn() {
+    console.log(flowModule.getActivePlayer().mark)
+    whosTurn.textContent = `${flowModule.getActivePlayer().mark} TURN`;
+  }
+
   dialogPreRound.showModal();
+  showTurn();
   showGrids();
 })();

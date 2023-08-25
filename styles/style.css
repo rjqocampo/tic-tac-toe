@@ -45,11 +45,14 @@ body {
   align-content: space-between;
 }
 
+.wrapper-github {
+  width: 200px;
+}
 .wrapper-github a {
   font-family: "Courier New", Courier, monospace;
   font-weight: bold;
   font-size: 0.7rem;
-  color: black;
+  color: white;
   text-decoration: none;
   padding: 5px;
   display: flex;
@@ -68,6 +71,7 @@ body {
   content: "Click to see code";
 }
 
+/* -------- Pre-round-------- */
 .dialog-pre-round {
   color: rgba(255, 255, 255, 0.6235294118);
   border: none;
@@ -138,6 +142,7 @@ body {
   box-shadow: 0px 3px 1px #a77a27;
 }
 
+/* -------- Post-round-------- */
 /* -------- Tic Tac Toe -------- */
 .tic-tac-toe {
   display: grid;
