@@ -21,13 +21,50 @@ const gameModule = (function() {
   }
 })();
 
+const flowModule = (function () {
+  const players = [
+    {
+      name: 'Player 1',
+      mark: 'X',
+    },
+    {
+      name: 'Player 2',
+      mark: 'O',
+    }
+  ];
+
+  function log() {
+    console.table(players);
+  }
+
+  function setMark(e) {
+    if(e.target.textContent === 'X') {
+      players[0].mark = 'X';
+      players[1].mark = 'O';
+    } else {
+      players[0].mark = 'O'
+      players[1].mark = 'X'
+    }
+  }
+
+  return {
+    log, setMark
+  }
+})();
+
+const playerModule = (function() {
+
+})();
+
 const displayModule = (function() {
   const dialogPreRound = document.querySelector('.dialog-pre-round');
-  const buttonPreRound = document.querySelector('.button-pre-round');
+  const buttonStartGame = document.querySelector('.button-start-game');
+  const buttonChooseMark = document.querySelector('.dialog-pre-round > div > div');
   const main = document.querySelector('main');
 
-  buttonPreRound.addEventListener('click', () => dialogPreRound.close())
-  dialogPreRound.showModal();
+  buttonStartGame.addEventListener('click', () => dialogPreRound.close());
+  buttonChooseMark.addEventListener('click', flowModule.setMark);
+  
 
   function showGrids() {
     gameModule.getGrids().forEach((grid) => {
@@ -43,30 +80,6 @@ const displayModule = (function() {
     }
   }
 
+  dialogPreRound.showModal();
   showGrids();
-})();
-
-const flowModule = (function () {
-
-})();
-
-const playerModule = (function() {
-  const players = [
-    {
-      name: 'Player 1',
-      mark: 'X',
-    },
-    {
-      name: 'Player 2',
-      mark: 'O',
-    }
-  ];
-
-  function log() {
-    console.log(players);
-  }
-
-  return {
-    log
-  }
 })();
