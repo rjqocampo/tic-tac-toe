@@ -1,5 +1,5 @@
 const gameModule = (function() {
-  const grids = [0, 1, 2, 0, 0, 0, 0, 0, 0];
+  const grids = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   const players = [
     {
       name: 'Player 1',
@@ -16,10 +16,16 @@ const gameModule = (function() {
     tie: 0
   }
   let activePlayer = players[0];
+  let results = null;
 
   const getGrids = () => grids;
   const getActivePlayer = () => activePlayer;
   const getScores = () => scores;
+  const getResults = () => {
+    const storeResults = results;
+    winner = null;
+    return storeResults;
+  }
 
   function setActivePlayer() {
     activePlayer = players.find(player => player.mark === 'X');
@@ -51,22 +57,64 @@ const gameModule = (function() {
       } else {
         grids[index] = 2;
       }
-      console.log(index)
-      console.log(mark)
-      console.table(grids);
-    
+      console.log(`index: ${index}`)
+      checkWinner();
       switchActivePlayer();
     }
   }
 
   function checkWinner() {
-    // grids.forEach((grid) => {
-    //   if
-    // })
+    for (let i = 0; i < 9; i += 3) {
+      if (grids[i] === grids[i + 1] && grids[i] === grids[i + 2] && grids[i] !== 0) {
+        console.log('ROW');
+        console.log(getActivePlayer().mark);
+        updateScores(getActivePlayer().mark);
+        return;
+      }
+    }
+
+    for (let i = 0; i < 3; i++) {
+      if (grids[i] === grids[i + 3] && grids[i] === grids[i + 6] && grids[i] !== 0) {
+        console.log('COLUMN');
+        console.log(getActivePlayer().mark);
+        updateScores(getActivePlayer().mark);
+        return;
+      }
+    }
+     
+    if ((grids[0] === grids[4] && grids[0] === grids[8] && grids[0] !== 0) ||
+        (grids[2] === grids[4] && grids[2] === grids[6] && grids[2] !== 0)) {
+      console.log('DIAGONAL');
+      console.log(getActivePlayer().mark);
+      updateScores(getActivePlayer().mark);
+      return;
+    } else if (grids.every((grid) => grid !== 0)) {
+      console.log('DRAW');
+      updateScores();
+    }
+  }
+
+  function updateScores(mark) {
+    if (mark === 'X') {
+      console.log('add x');
+      scores.x++;
+    } else if (mark === 'O') {
+      console.log('add o');
+      scores.o++;
+    } else {
+      console.log('add tie');
+      scores.tie++;
+    }
   }
 
   return {
-    getGrids, getActivePlayer, getScores, chooseMark, placeMark
+    getGrids,
+    getActivePlayer, 
+    getScores,
+    getResults,
+    chooseMark, 
+    placeMark, 
+    checkWinner
   }
 })();
 
@@ -87,6 +135,7 @@ const displayModule = (function() {
     removeGrids();
     showTurn();
     showGrids();
+    showScores();
   })
 
   function showGrids() {
@@ -115,14 +164,11 @@ const displayModule = (function() {
   }
 
   function showTurn() {
-    console.log(gameModule.getActivePlayer().mark)
     whosTurn.textContent = `${gameModule.getActivePlayer().mark} TURN`;
   }
 
   function showScores() {
     let {x, o, tie} = gameModule.getScores();
-    console.log(x);
-    console.log(xScore);
     xScore.textContent = x;
     oScore.textContent = o;
     tieScore.textContent = tie;
