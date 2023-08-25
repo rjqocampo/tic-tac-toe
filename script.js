@@ -22,6 +22,8 @@ const gameModule = (function() {
 })();
 
 const flowModule = (function () {
+  let activePlayer = null;
+  
   const players = [
     {
       name: 'Player 1',
@@ -34,7 +36,7 @@ const flowModule = (function () {
   ];
 
   function log() {
-    console.table(players);
+    console.table(activePlayer);
   }
 
   function setMark(e) {
@@ -45,15 +47,17 @@ const flowModule = (function () {
       players[0].mark = 'O'
       players[1].mark = 'X'
     }
+
+    setActivePlayer();
+  }
+
+  function setActivePlayer() {
+    activePlayer = players.find(player => player.mark === 'X');
   }
 
   return {
     log, setMark
   }
-})();
-
-const playerModule = (function() {
-
 })();
 
 const displayModule = (function() {
