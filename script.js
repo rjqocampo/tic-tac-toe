@@ -1,45 +1,5 @@
-/*
-Grid has 3 states: 0, 1, 2;
-2 player objects. Has 2 states: X or O
-
-public function
-set mark
-reset game
-
-Intro modal
-Choose mark: X or O
-Default players[0]: 
-*/
-
 const gameModule = (function() {
   const grids = [0, 1, 2, 0, 0, 0, 0, 0, 0];
-
-  const getGrids = () => grids;
-
-  function placeMark(e) {
-    let index = e.target.getAttribute('data-index');
-    let mark = flowModule.getActivePlayer().mark;
-
-    if (grids[index] === 0) {
-      if (mark === 'X') {
-        grids[index] = 1;
-      } else {
-        grids[index] = 2;
-      }
-      console.log(index)
-      console.log(mark)
-      console.table(grids);
-    
-      flowModule.switchActivePlayer();
-    }
-  }
-
-  return {
-    getGrids, placeMark
-  }
-})();
-
-const flowModule = (function () {
   const players = [
     {
       name: 'Player 1',
@@ -50,10 +10,18 @@ const flowModule = (function () {
       mark: 'O',
     }
   ];
-
   let activePlayer = players[0];
 
+  const getGrids = () => grids;
   const getActivePlayer = () => activePlayer;
+
+  function setActivePlayer() {
+    activePlayer = players.find(player => player.mark === 'X');
+  }
+
+  function switchActivePlayer() {
+    activePlayer = (activePlayer === players[0]) ? players[1] : players[0];
+  }
 
   function chooseMark(e) {
     if (e.target.textContent === 'X') {
@@ -67,16 +35,30 @@ const flowModule = (function () {
     setActivePlayer();
   }
 
-  function setActivePlayer() {
-    activePlayer = players.find(player => player.mark === 'X');
+  function placeMark(e) {
+    let index = e.target.getAttribute('data-index');
+    let mark = getActivePlayer().mark;
+
+    if (grids[index] === 0) {
+      if (mark === 'X') {
+        grids[index] = 1;
+      } else {
+        grids[index] = 2;
+      }
+      console.log(index)
+      console.log(mark)
+      console.table(grids);
+    
+      switchActivePlayer();
+    }
   }
 
-  function switchActivePlayer() {
-    activePlayer = (activePlayer === players[0]) ? players[1] : players[0];
+  function checkWinner() {
+
   }
 
   return {
-    chooseMark, getActivePlayer, switchActivePlayer
+    getGrids, chooseMark, getActivePlayer, placeMark
   }
 })();
 
@@ -88,7 +70,7 @@ const displayModule = (function() {
   const main = document.querySelector('main');
 
   buttonStartGame.addEventListener('click', () => dialogPreRound.close());
-  buttonChooseMark.addEventListener('click', flowModule.chooseMark);
+  buttonChooseMark.addEventListener('click', gameModule.chooseMark);
   main.addEventListener('click', (e) => {
     gameModule.placeMark(e);
     removeGrids();
@@ -122,8 +104,8 @@ const displayModule = (function() {
   }
 
   function showTurn() {
-    console.log(flowModule.getActivePlayer().mark)
-    whosTurn.textContent = `${flowModule.getActivePlayer().mark} TURN`;
+    console.log(gameModule.getActivePlayer().mark)
+    whosTurn.textContent = `${gameModule.getActivePlayer().mark} TURN`;
   }
 
   dialogPreRound.showModal();
