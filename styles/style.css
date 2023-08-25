@@ -215,6 +215,33 @@ body {
 .tic-tac-toe footer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  justify-content: center;
   justify-items: center;
+}
+.tic-tac-toe footer div {
+  color: #1a2b33;
+  width: 100px;
+  height: 50px;
+  border-radius: 12px;
+  display: grid;
+  justify-items: center;
+}
+.tic-tac-toe footer div p {
+  font-size: 0.8rem;
+  align-self: end;
+}
+.tic-tac-toe footer div h3 {
+  font-size: 1.2rem;
+  line-height: 1.4rem;
+  font-weight: bold;
+}
+.tic-tac-toe footer .x-score {
+  background-color: #34c3be;
+  justify-self: end;
+}
+.tic-tac-toe footer .tie-score {
+  background-color: #a9bec8;
+}
+.tic-tac-toe footer .o-score {
+  background-color: #f2b138;
+  justify-self: start;
 }/*# sourceMappingURL=style.css.map */

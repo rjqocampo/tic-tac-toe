@@ -240,7 +240,35 @@ body {
   footer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    justify-content: center;
     justify-items: center;
+    div {
+      color: $font-dark;
+      width: 100px;
+      height: 50px;
+      border-radius: 12px;;
+
+      display: grid;
+      justify-items: center;
+      p {
+        font-size: 0.8rem;
+        align-self: end;
+      }
+      h3 {
+        font-size: 1.2rem;
+        line-height: 1.4rem;
+        font-weight: bold;
+      }
+    }
+    .x-score {
+      background-color: $theme-blue;
+      justify-self: end;
+    }
+    .tie-score {
+      background-color: $theme-light;
+    }
+    .o-score {
+      background-color: $theme-yellow;
+      justify-self: start;
+    }
   }
 }
