@@ -105,11 +105,12 @@ Found a bug or issue in the project? Help me improve by reporting it! A well-doc
 
 1. **Check Existing Issues:** Before reporting a bug, search the [issue tracker](https://github.com/rjqocampo/tic-tac-toe/issues) to see if someone else has already reported the same issue. If you find a similar report, you can add more information or subscribe to updates.
 2. **Create a New Issue:** If the issue hasn't been reported yet, go ahead and [create a new issue](https://github.com/rjqocampo/tic-tac-toe/issues/new). Try to provide the following information:
-   * A clear and descriptive title.
-   * Details about the bug or issue you encountered.
-   * Steps to reproduce the issue (if applicable).
-   * Expected behavior and actual behavior.
-   * Any relevant screenshots or error messages.
+   * A clear and descriptive title
+   * Details about the bug or issue you encountered
+   * Steps to reproduce the issue (if applicable)
+   * Expected behavior and actual behavior
+   * Any relevant screenshots or error messages
+     
 3. **Labels and Tags:** Kindly use appropriate labels and tags to categorize the issue. This helps me prioritize and address it more efficiently.
 
 Thank you for your contributions and I appreciate all interests in making this project better for everyone. 
