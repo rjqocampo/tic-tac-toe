@@ -118,6 +118,7 @@ const gameModule = (function() {
 
 const displayModule = (function() {
   const dialogPreRound = document.querySelector('.dialog-pre-round');
+  const dialogPostRound = document.querySelector('.dialog-post-round');
   const buttonStartGame = document.querySelector('.button-start-game');
   const buttonChooseMark = document.querySelector('.dialog-pre-round > div > div');
   const xScore = document.querySelector('.x-score h3');
@@ -177,10 +178,10 @@ const displayModule = (function() {
 
   function showPostRound(results) {
     console.log(`Show post-round for ${results}`);
-    // 
+    dialogPostRound.showModal();
   }
 
-  dialogPreRound.showModal();
+  // dialogPreRound.showModal();
   showTurn();
   showGrids();
   showScores();

@@ -43,9 +43,6 @@ font-size: 100%;
 /* -------- Custom CSS -------- */
 
 body {
-  // font-family: 'Lato', sans-serif;
-  // font-family: 'Poppins', sans-serif;
-
   font-family: 'Poppins',  system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   min-height: 100vh;
 
@@ -89,13 +86,15 @@ body {
   }
 }
 
-/* -------- Pre-round-------- */
+/* -------- Dialog Pre-round-------- */
 
 .dialog-pre-round{
+  box-sizing: content-box;
   color: $font-white;
-  border: none;
+  border: 5px solid $theme-darker;
   background-color: $theme-darker;
-  height: 500px;
+  height: 100vh;
+  width: 100vw;
   
   &[open] { // only set dialog to grid when open. if not, dialog persists even when closed
     display: grid;
@@ -104,7 +103,8 @@ body {
     gap: 20px;
   }
   &::backdrop {
-    background-color: $theme-darker;
+    background-color: yellow;
+    margin: 0px auto;
   }
   h1 {
     font-size: 3.5rem;
@@ -163,8 +163,93 @@ body {
   }
 }
 
-/* -------- Post-round-------- */
+/* -------- Dialog Post-round-------- */
 
+.dialog-post-round {
+  box-sizing: content-box;
+  background-color: $theme-darker;
+  height: 250px;
+  border: 5px solid $theme-darker;
+  width: 100vw;
+  &[open] {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+  }
+  &::backdrop {
+    background-color: black;
+    opacity: 0.4;
+  }
+  &__header {
+    font-size: 1.5rem;
+    text-align: center;
+    &--x {
+      color: $theme-yellow;
+    }
+    &--o {
+      color: $theme-blue;
+    }
+  }
+  &__winner {
+    font-size: clamp(1rem, 1rem + 4vw, 5rem);
+    line-height: 5rem;
+    font-weight: bold;
+    &--x {
+      color: $theme-blue;
+    }
+    &--o {
+      color: $theme-yellow;
+    }
+  }
+  div {
+    margin: 15px 0px;
+
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    button:first-child {
+      background-color: $theme-light;
+      border: none;
+      border-radius: 5px;
+      box-shadow: 0px 3px 1px #7a868d;
+      padding: 0;
+      height: 35px;
+      width: 35px;
+
+      justify-self: start;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      outline: none;
+      img {
+        height: 32px;
+        width: 32px;
+        padding: 5px;
+      }
+    }
+    .button-play-again {
+      font-size: 1.1rem;
+      color: rgb(22, 22, 22);
+
+      border: none;
+      border-radius: 5px;
+      height: 35px;
+      width: 160px;
+      cursor: pointer;
+      &--x {
+        background-color: $theme-yellow;
+        box-shadow: 0px 3px 1px #a77a27;
+      }
+      &--o {
+        background-color: $theme-blue;
+        box-shadow: 0px 3px 1px #21807b;
+      }
+    }
+  }
+}
 
 /* -------- Tic Tac Toe -------- */
 
@@ -176,6 +261,7 @@ body {
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
     align-items: center;
+    align-self: end;
     h1 {
       font-size: 2.5rem;
       font-weight: bold;
@@ -191,11 +277,13 @@ body {
       font-size: 1.2rem;
       color: $font-white;
       text-align: center;
-      padding: 10px 20px;
+      height: 40px;
+      width: 110px;
       border-radius: 8px;
       box-shadow: 0px 5px 1px #111e24;
-
       background-color: $theme-dark;
+      display: grid;
+      align-items: center;
     }
     button {
       background-color: $theme-light;
@@ -246,6 +334,7 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
+    align-self: start;
     div {
       color: $font-dark;
       width: 100px;

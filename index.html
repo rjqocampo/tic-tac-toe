@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;0,900;1,400&family=Poppins:ital,wght@0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles/style.css">
     <script src="script.js" defer></script>
   </head>
@@ -38,6 +38,7 @@
           </div>
         </footer>
       </div>
+
       <div class="wrapper-github">
         <a href="https://github.com/rjqocampo/tic-tac-toe" target="_blank" rel="noopener noreferrer">
           <img src="img/git1.png" alt="Github icon. Silhouette of github's mascot.">
@@ -57,6 +58,17 @@
         </div>
       </div>
       <button type="button" class="button-start-game">Start Game</button>
+    </dialog>
+
+    <dialog class="dialog-post-round">
+      <h2 class="dialog-post-round__header dialog-post-round__header--o">GREAT JOB!</h2>
+      <h1 class="dialog-post-round__winner dialog-post-round__winner--o">X WINS THE ROUND</h1>
+      <div>
+        <button type="button">
+          <img src="/img/home.svg" alt="">
+        </button>
+        <button type="button" class="button-play-again button-play-again--o">PLAY AGAIN</button>
+      </div>
     </dialog>
   </body>
 </html>

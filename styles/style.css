@@ -71,12 +71,14 @@ body {
   content: "Click to see code";
 }
 
-/* -------- Pre-round-------- */
+/* -------- Dialog Pre-round-------- */
 .dialog-pre-round {
+  box-sizing: content-box;
   color: rgba(255, 255, 255, 0.6235294118);
-  border: none;
+  border: 5px solid #1a2b33;
   background-color: #1a2b33;
-  height: 500px;
+  height: 100vh;
+  width: 100vw;
 }
 .dialog-pre-round[open] {
   display: grid;
@@ -85,7 +87,8 @@ body {
   gap: 20px;
 }
 .dialog-pre-round::backdrop {
-  background-color: #1a2b33;
+  background-color: yellow;
+  margin: 0px auto;
 }
 .dialog-pre-round h1 {
   font-size: 3.5rem;
@@ -142,7 +145,90 @@ body {
   box-shadow: 0px 3px 1px #a77a27;
 }
 
-/* -------- Post-round-------- */
+/* -------- Dialog Post-round-------- */
+.dialog-post-round {
+  box-sizing: content-box;
+  background-color: #1a2b33;
+  height: 250px;
+  border: 5px solid #1a2b33;
+  width: 100vw;
+}
+.dialog-post-round[open] {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+}
+.dialog-post-round::backdrop {
+  background-color: black;
+  opacity: 0.4;
+}
+.dialog-post-round__header {
+  font-size: 1.5rem;
+  text-align: center;
+}
+.dialog-post-round__header--x {
+  color: #f2b138;
+}
+.dialog-post-round__header--o {
+  color: #34c3be;
+}
+.dialog-post-round__winner {
+  font-size: clamp(1rem, 1rem + 4vw, 5rem);
+  line-height: 5rem;
+  font-weight: bold;
+}
+.dialog-post-round__winner--x {
+  color: #34c3be;
+}
+.dialog-post-round__winner--o {
+  color: #f2b138;
+}
+.dialog-post-round div {
+  margin: 15px 0px;
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+.dialog-post-round div button:first-child {
+  background-color: #a9bec8;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0px 3px 1px #7a868d;
+  padding: 0;
+  height: 35px;
+  width: 35px;
+  justify-self: start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  outline: none;
+}
+.dialog-post-round div button:first-child img {
+  height: 32px;
+  width: 32px;
+  padding: 5px;
+}
+.dialog-post-round div .button-play-again {
+  font-size: 1.1rem;
+  color: rgb(22, 22, 22);
+  border: none;
+  border-radius: 5px;
+  height: 35px;
+  width: 160px;
+  cursor: pointer;
+}
+.dialog-post-round div .button-play-again--x {
+  background-color: #f2b138;
+  box-shadow: 0px 3px 1px #a77a27;
+}
+.dialog-post-round div .button-play-again--o {
+  background-color: #34c3be;
+  box-shadow: 0px 3px 1px #21807b;
+}
+
 /* -------- Tic Tac Toe -------- */
 .tic-tac-toe {
   display: grid;
@@ -153,6 +239,7 @@ body {
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   align-items: center;
+  align-self: end;
 }
 .tic-tac-toe header h1 {
   font-size: 2.5rem;
@@ -169,10 +256,13 @@ body {
   font-size: 1.2rem;
   color: rgba(255, 255, 255, 0.6235294118);
   text-align: center;
-  padding: 10px 20px;
+  height: 40px;
+  width: 110px;
   border-radius: 8px;
   box-shadow: 0px 5px 1px #111e24;
   background-color: #1e3640;
+  display: grid;
+  align-items: center;
 }
 .tic-tac-toe header button {
   background-color: #a9bec8;
@@ -221,6 +311,7 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
+  align-self: start;
 }
 .tic-tac-toe footer div {
   color: #1a2b33;
