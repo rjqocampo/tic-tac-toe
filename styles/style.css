@@ -163,6 +163,7 @@ body {
   opacity: 0.4;
 }
 .dialog-post-round__header {
+  color: #a9bec8;
   font-size: 1.5rem;
   text-align: center;
 }
@@ -172,7 +173,11 @@ body {
 .dialog-post-round__header--o {
   color: #34c3be;
 }
+.dialog-post-round__header--tie {
+  color: #a9bec8;
+}
 .dialog-post-round__winner {
+  color: #a9bec8;
   font-size: clamp(1rem, 1rem + 4vw, 5rem);
   line-height: 5rem;
   font-weight: bold;
@@ -182,6 +187,9 @@ body {
 }
 .dialog-post-round__winner--o {
   color: #f2b138;
+}
+.dialog-post-round__winner--tie {
+  color: #a9bec8;
 }
 .dialog-post-round div {
   margin: 15px 0px;
@@ -218,6 +226,8 @@ body {
   border-radius: 5px;
   height: 35px;
   width: 160px;
+  background-color: #f2b138;
+  box-shadow: 0px 3px 1px #a77a27;
   cursor: pointer;
 }
 .dialog-post-round div .button-play-again--x {
@@ -227,6 +237,11 @@ body {
 .dialog-post-round div .button-play-again--o {
   background-color: #34c3be;
   box-shadow: 0px 3px 1px #21807b;
+}
+.dialog-post-round div .button-play-again--tie {
+  color: #1a2b33;
+  background-color: #a9bec8;
+  box-shadow: 0px 3px 1px #7a868d;
 }
 
 /* -------- Tic Tac Toe -------- */

@@ -16,7 +16,7 @@
         <header>
           <h1><span>X</span><span>O</span></h1>
           <p class="whos-turn"></p>
-          <button type="button">
+          <button type="button" class="button-home">
             <img src="/img/home.svg" alt="">
           </button>
         </header>
@@ -25,7 +25,7 @@
         </main>
         <footer>
           <div class="x-score">
-            <p>X</p>
+            <p>PLAYER X</p>
             <h3>1</h3>
           </div>
           <div class="tie-score">
@@ -33,7 +33,7 @@
             <h3>2</h3>
           </div>
           <div class="o-score">
-            <p>O</p>
+            <p>PLAYER O</p>
             <h3>3</h3>
           </div>
         </footer>
@@ -61,13 +61,13 @@
     </dialog>
 
     <dialog class="dialog-post-round">
-      <h2 class="dialog-post-round__header dialog-post-round__header--o">GREAT JOB!</h2>
-      <h1 class="dialog-post-round__winner dialog-post-round__winner--o">X WINS THE ROUND</h1>
+      <h2 class="dialog-post-round__header">GREAT JOB!</h2>
+      <h1 class="dialog-post-round__winner"></h1>
       <div>
-        <button type="button">
+        <button type="button" class="button-home">
           <img src="/img/home.svg" alt="">
         </button>
-        <button type="button" class="button-play-again button-play-again--o">PLAY AGAIN</button>
+        <button type="button" class="button-play-again">PLAY AGAIN</button>
       </div>
     </dialog>
   </body>

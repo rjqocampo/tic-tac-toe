@@ -1,5 +1,5 @@
 const gameModule = (function() {
-  const grids = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let grids = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   const players = [
     {
       name: 'Player 1',
@@ -22,9 +22,9 @@ const gameModule = (function() {
   const getActivePlayer = () => activePlayer;
   const getScores = () => scores;
   const getRoundResults = () => {
-    const storeResults = roundResults;
+    const x = roundResults;
     roundResults = null;
-    return storeResults;
+    return x;
   }
 
   function setActivePlayer() {
@@ -86,7 +86,7 @@ const gameModule = (function() {
       return;
     } else if (grids.every((grid) => grid !== 0)) {
       console.log('DRAW');
-      updateScores(null);
+      updateScores('TIE');
     }
   }
 
@@ -103,6 +103,11 @@ const gameModule = (function() {
     }
     
     roundResults = mark;
+    console.log(roundResults);
+  }
+
+  function resetGrids() {
+    grids = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   }
 
   return {
@@ -112,13 +117,17 @@ const gameModule = (function() {
     getRoundResults,
     chooseMark, 
     placeMark, 
-    checkWinner
+    checkWinner,
+    resetGrids
   }
 })();
 
 const displayModule = (function() {
   const dialogPreRound = document.querySelector('.dialog-pre-round');
   const dialogPostRound = document.querySelector('.dialog-post-round');
+  const dialogPostRoundHeader = document.querySelector('.dialog-post-round__header');
+  const dialogPostRoundWinner = document.querySelector('.dialog-post-round__winner');
+  const buttonPlayAgain = document.querySelector('.button-play-again');
   const buttonStartGame = document.querySelector('.button-start-game');
   const buttonChooseMark = document.querySelector('.dialog-pre-round > div > div');
   const xScore = document.querySelector('.x-score h3');
@@ -127,16 +136,25 @@ const displayModule = (function() {
   const whosTurn = document.querySelector('.whos-turn');
   const main = document.querySelector('main');
 
-  buttonStartGame.addEventListener('click', () => dialogPreRound.close());
   buttonChooseMark.addEventListener('click', gameModule.chooseMark);
+  buttonStartGame.addEventListener('click', () => dialogPreRound.close());
+  buttonPlayAgain.addEventListener('click', () => {
+    gameModule.resetGrids();
+    dialogPostRound.close();
+    removeGrids();
+    showGrids();
+  })
   main.addEventListener('click', (e) => {
     gameModule.placeMark(e);
     removeGrids();
     showTurn();
     showGrids();
     showScores();
-    if (gameModule.getRoundResults() !== null) {
-      showPostRound(gameModule.getRoundResults());
+
+    let results = gameModule.getRoundResults();
+    if (results !== null) {
+      console.log(results);
+      showPostRound(results);
     }
   })
 
@@ -178,10 +196,29 @@ const displayModule = (function() {
 
   function showPostRound(results) {
     console.log(`Show post-round for ${results}`);
+    if (results === 'X') {
+      dialogPostRoundHeader.setAttribute('class', 'dialog-post-round__header dialog-post-round__header--x');
+      dialogPostRoundHeader.textContent = 'GREAT JOB!';
+      dialogPostRoundWinner.setAttribute('class', 'dialog-post-round__winner dialog-post-round__winner--x');
+      dialogPostRoundWinner.textContent = 'X WINS THE ROUND';
+      buttonPlayAgain.setAttribute('class', 'button-play-again button-play-again--x');
+    } else if (results === 'O') {
+      dialogPostRoundHeader.setAttribute('class', 'dialog-post-round__header dialog-post-round__header--o');
+      dialogPostRoundHeader.textContent = 'GREAT JOB!';
+      dialogPostRoundWinner.setAttribute('class', 'dialog-post-round__winner dialog-post-round__winner--o');
+      dialogPostRoundWinner.textContent = 'O WINS THE ROUND';
+      buttonPlayAgain.setAttribute('class', 'button-play-again button-play-again--o');
+    } else {
+      dialogPostRoundHeader.setAttribute('class', 'dialog-post-round__header dialog-post-round__header--tie');
+      dialogPostRoundHeader.textContent = 'CLOSE MATCH!'
+      dialogPostRoundWinner.setAttribute('class', 'dialog-post-round__winner dialog-post-round__winner--tie');
+      dialogPostRoundWinner.textContent = 'IT\'S A TIE';
+      buttonPlayAgain.setAttribute('class', 'button-play-again button-play-again--tie');
+    }
     dialogPostRound.showModal();
   }
 
-  // dialogPreRound.showModal();
+  dialogPreRound.showModal();
   showTurn();
   showGrids();
   showScores();
