@@ -272,7 +272,7 @@ body {
   color: rgba(255, 255, 255, 0.6235294118);
   text-align: center;
   height: 40px;
-  width: 110px;
+  width: 200px;
   border-radius: 8px;
   box-shadow: 0px 3px 1px #111e24;
   background-color: #1e3640;
@@ -315,12 +315,33 @@ body {
   display: grid;
   justify-content: center;
   align-content: center;
+  /* Empty grid hover animations */
 }
-.tic-tac-toe main .grid--x {
+.tic-tac-toe main .grid__x {
   color: #34c3be;
 }
-.tic-tac-toe main .grid--o {
+.tic-tac-toe main .grid__o {
   color: #f2b138;
+}
+.tic-tac-toe main .grid--hover-x::after {
+  transition: all 0.3s;
+  color: #1e3640;
+  opacity: 0;
+  content: "X";
+  -webkit-text-stroke: 1px #34c3be;
+}
+.tic-tac-toe main .grid--hover-x:hover::after {
+  opacity: 1;
+}
+.tic-tac-toe main .grid--hover-o::after {
+  transition: all 0.3s;
+  color: #1e3640;
+  opacity: 0;
+  content: "O";
+  -webkit-text-stroke: 1px #f2b138;
+}
+.tic-tac-toe main .grid--hover-o:hover::after {
+  opacity: 1;
 }
 .tic-tac-toe footer {
   padding: 0px 20px;

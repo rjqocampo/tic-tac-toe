@@ -208,18 +208,24 @@ const displayModule = (function() {
   })
 
   function showGrids() {
+    let mark = gameModule.getActivePlayer().mark;
     gameModule.getGrids().forEach((grid, index) => {
       const div = document.createElement('div');
       div.setAttribute('data-index', `${index}`);
 
       if (grid === 1) {
         div.textContent = 'X'
-        div.setAttribute('class', 'grid grid--x');
+        div.setAttribute('class', 'grid grid__x');
       } else if (grid === 2) {
         div.textContent = 'O'
-        div.setAttribute('class', 'grid grid--o');
+        div.setAttribute('class', 'grid grid__o');
       } else {
         div.setAttribute('class', 'grid');
+        if (mark === 'X') {
+          div.setAttribute('class', 'grid grid--hover-x');
+        } else if (mark === 'O') {
+          div.setAttribute('class', 'grid grid--hover-o');
+        }
       }
 
       main.appendChild(div);
@@ -233,7 +239,7 @@ const displayModule = (function() {
   }
 
   function showTurn() {
-    whosTurn.textContent = `${gameModule.getActivePlayer().mark} TURN`;
+    whosTurn.textContent = `PLAYER ${gameModule.getActivePlayer().mark} TURN`;
   }
 
   function showScores() {
