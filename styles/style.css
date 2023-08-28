@@ -128,13 +128,15 @@ body {
   color: rgba(255, 255, 255, 0.6235294118);
   background-color: transparent;
   border: none;
+  transition: scale 0.4s ease-in-out, background-color 0.4s ease-in-out, border-radius 1s;
 }
 .dialog-pre-round > div div button:focus {
+  scale: 90%;
   color: #1a2b33;
   background-color: #a9bec8;
   border-radius: 8px;
   border: none;
-  outline-width: 0;
+  outline: 0;
 }
 .dialog-pre-round > button {
   background-color: #f2b138;
@@ -142,7 +144,17 @@ body {
   border-radius: 8px;
   padding: 10px 40px;
   margin-top: 20px;
-  box-shadow: 0px 3px 1px #a77a27;
+  box-shadow: 0px 4px 1px #a77a27;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.dialog-pre-round > button:hover {
+  transform: translateY(2px);
+  box-shadow: 0px 2px 1px #a77a27;
+}
+.dialog-pre-round > button:active {
+  transform: translateY(4px);
+  box-shadow: 0px 0px 1px #a77a27;
 }
 
 /* -------- Dialog Post-round-------- */
@@ -207,6 +219,7 @@ body {
   padding: 0;
   height: 35px;
   width: 35px;
+  transition: all 0.2s;
   justify-self: start;
   display: flex;
   justify-content: center;
@@ -219,6 +232,14 @@ body {
   width: 32px;
   padding: 5px;
 }
+.dialog-post-round div button:first-child:hover {
+  transform: translateY(2px);
+  box-shadow: 0px 2px 1px #7a868d;
+}
+.dialog-post-round div button:first-child:active {
+  transform: translateY(4px);
+  box-shadow: 0px 0px 1px #7a868d;
+}
 .dialog-post-round div .button-play-again {
   font-size: 1.1rem;
   color: rgb(22, 22, 22);
@@ -226,22 +247,45 @@ body {
   border-radius: 5px;
   height: 35px;
   width: 160px;
-  background-color: #f2b138;
-  box-shadow: 0px 3px 1px #a77a27;
   cursor: pointer;
+  transition: all 0.2s;
 }
 .dialog-post-round div .button-play-again--x {
   background-color: #f2b138;
-  box-shadow: 0px 3px 1px #a77a27;
+  box-shadow: 0px 4px 1px #a77a27;
+}
+.dialog-post-round div .button-play-again--x:hover {
+  transform: translateY(2px);
+  box-shadow: 0px 2px 1px #a77a27;
+}
+.dialog-post-round div .button-play-again--x:active {
+  transform: translateY(4px);
+  box-shadow: 0px 0px 1px #a77a27;
 }
 .dialog-post-round div .button-play-again--o {
   background-color: #34c3be;
-  box-shadow: 0px 3px 1px #21807b;
+  box-shadow: 0px 4px 1px #21807b;
+}
+.dialog-post-round div .button-play-again--o:hover {
+  transform: translateY(2px);
+  box-shadow: 0px 2px 1px #21807b;
+}
+.dialog-post-round div .button-play-again--o:active {
+  transform: translateY(4px);
+  box-shadow: 0px 0px 1px #21807b;
 }
 .dialog-post-round div .button-play-again--tie {
   color: #1a2b33;
   background-color: #a9bec8;
-  box-shadow: 0px 3px 1px #7a868d;
+  box-shadow: 0px 4px 1px #7a868d;
+}
+.dialog-post-round div .button-play-again--tie:hover {
+  transform: translateY(2px);
+  box-shadow: 0px 2px 1px #7a868d;
+}
+.dialog-post-round div .button-play-again--tie:active {
+  transform: translateY(4px);
+  box-shadow: 0px 0px 1px #7a868d;
 }
 
 /* -------- Tic Tac Toe -------- */
@@ -289,11 +333,20 @@ body {
   display: flex;
   align-items: center;
   cursor: pointer;
+  transition: all 0.2s;
 }
 .tic-tac-toe header button img {
   height: 32px;
   width: 32px;
   padding: 5px;
+}
+.tic-tac-toe header button:hover {
+  transform: translateY(2px);
+  box-shadow: 0px 2px 1px #7a868d;
+}
+.tic-tac-toe header button:active {
+  transform: translateY(4px);
+  box-shadow: 0px 0px 1px #7a868d;
 }
 .tic-tac-toe main {
   display: grid;
@@ -312,10 +365,11 @@ body {
   box-shadow: 0px 6px 1px #111e24;
   height: 100%;
   width: 100%;
+  transition: all 0.4s ease-in-out;
   display: grid;
   justify-content: center;
   align-content: center;
-  /* Empty grid hover animations */
+  /* Grid hover animations */
 }
 .tic-tac-toe main .grid__x {
   color: #34c3be;
@@ -324,21 +378,21 @@ body {
   color: #f2b138;
 }
 .tic-tac-toe main .grid--hover-x::after {
-  transition: all 0.3s;
   color: #1e3640;
   opacity: 0;
   content: "X";
   -webkit-text-stroke: 1px #34c3be;
+  transition: all 0.3s;
 }
 .tic-tac-toe main .grid--hover-x:hover::after {
   opacity: 1;
 }
 .tic-tac-toe main .grid--hover-o::after {
-  transition: all 0.3s;
   color: #1e3640;
   opacity: 0;
   content: "O";
   -webkit-text-stroke: 1px #f2b138;
+  transition: all 0.3s;
 }
 .tic-tac-toe main .grid--hover-o:hover::after {
   opacity: 1;

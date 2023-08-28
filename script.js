@@ -174,29 +174,35 @@ const displayModule = (function() {
 
   buttonChooseMark.addEventListener('click', gameModule.chooseMark);
   buttonStartGame.addEventListener('click', () => {
-    dialogPreRound.close();
-    dialogPostRound.close();
-    removeGrids();
-    showTurn();
-    showGrids();
-    showScores();
+    setTimeout(() => {
+      dialogPreRound.close();
+      dialogPostRound.close();
+      removeGrids();
+      showWhosTurn();
+      showGrids();
+      showScores();
+    }, 300)
   });
   buttonHome.forEach((button) => {
     button.addEventListener('click', () => {
-      gameModule.resetAll();
-      dialogPreRound.showModal();
+      setTimeout(() => {
+        gameModule.resetAll();
+        dialogPreRound.showModal();
+      }, 300)
     })
   })
   buttonPlayAgain.addEventListener('click', () => {
-    gameModule.resetGrids();
-    dialogPostRound.close();
-    removeGrids();
-    showGrids();
+    setTimeout(() => {
+      gameModule.resetGrids();
+      dialogPostRound.close();
+      removeGrids();
+      showGrids();
+    }, 300)
   })
   main.addEventListener('click', (e) => {
     gameModule.placeMark(e);
     removeGrids();
-    showTurn();
+    showWhosTurn();
     showGrids();
     showScores();
 
@@ -209,6 +215,7 @@ const displayModule = (function() {
 
   function showGrids() {
     let mark = gameModule.getActivePlayer().mark;
+  
     gameModule.getGrids().forEach((grid, index) => {
       const div = document.createElement('div');
       div.setAttribute('data-index', `${index}`);
@@ -238,7 +245,7 @@ const displayModule = (function() {
     }
   }
 
-  function showTurn() {
+  function showWhosTurn() {
     whosTurn.textContent = `PLAYER ${gameModule.getActivePlayer().mark} TURN`;
   }
 

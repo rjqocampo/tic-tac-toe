@@ -9,6 +9,28 @@ $font-light: #a9bec8;
 $font-dark: #1a2b33;
 $font-black: #000000;
 
+@mixin buttons-feedback($color) {
+  &:hover {
+    transform: translateY(2px);
+    box-shadow: 0px 2px 1px $color;
+  }
+  &:active {
+    transform: translateY(4px);
+    box-shadow: 0px 0px 1px $color;
+  }
+}
+
+@mixin home-button-feedback() {
+  &:hover {
+    transform: translateY(2px);
+    box-shadow: 0px 2px 1px #7a868d;
+  }
+  &:active {
+    transform: translateY(4px);
+    box-shadow: 0px 0px 1px #7a868d;
+  }
+}
+
 /* -------- CSS Reset -------- */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -143,12 +165,14 @@ body {
         color: $font-white;
         background-color: transparent;
         border: none;
+        transition: scale 0.4s ease-in-out, background-color 0.4s ease-in-out, border-radius 1s;
         &:focus {
+          scale: 90%;
           color: $font-dark;
           background-color: $theme-light;
           border-radius: 8px;
           border: none;
-          outline-width: 0;
+          outline: 0;
         }
       }
     }
@@ -159,7 +183,10 @@ body {
     border-radius: 8px;
     padding: 10px 40px;
     margin-top: 20px;
-    box-shadow: 0px 3px 1px #a77a27;
+    box-shadow: 0px 4px 1px #a77a27;
+    cursor: pointer;
+    transition: all 0.2s;
+    @include buttons-feedback(#a77a27);
   }
 }
 
@@ -225,6 +252,7 @@ body {
       padding: 0;
       height: 35px;
       width: 35px;
+      transition: all 0.2s;
 
       justify-self: start;
       display: flex;
@@ -237,6 +265,7 @@ body {
         width: 32px;
         padding: 5px;
       }
+      @include home-button-feedback();
     }
     .button-play-again {
       font-size: 1.1rem;
@@ -246,21 +275,23 @@ body {
       border-radius: 5px;
       height: 35px;
       width: 160px;
-      background-color: $theme-yellow;
-      box-shadow: 0px 3px 1px #a77a27;
       cursor: pointer;
+      transition: all 0.2s;
       &--x {
         background-color: $theme-yellow;
-        box-shadow: 0px 3px 1px #a77a27;
+        box-shadow: 0px 4px 1px #a77a27;
+        @include buttons-feedback(#a77a27);
       }
       &--o {
         background-color: $theme-blue;
-        box-shadow: 0px 3px 1px #21807b;
+        box-shadow: 0px 4px 1px #21807b;
+        @include buttons-feedback(#21807b);
       }
       &--tie {
         color: $font-dark;
         background-color: $theme-light;
-        box-shadow: 0px 3px 1px #7a868d;
+        box-shadow: 0px 4px 1px #7a868d;
+        @include buttons-feedback(#7a868d);
       }
     }
   }
@@ -310,11 +341,13 @@ body {
       display: flex;
       align-items: center;
       cursor: pointer;
+      transition: all 0.2s;
       img {
         height: 32px;
         width: 32px;
         padding: 5px;
       }
+      @include home-button-feedback();
     }
   }
   main {
@@ -333,6 +366,7 @@ body {
       box-shadow: 0px 6px 1px #111e24;
       height: 100%;
       width: 100%;
+      transition: all 0.4s ease-in-out;
       
       display: grid;
       justify-content: center;
@@ -344,15 +378,14 @@ body {
         color: $theme-yellow;
       }
 
-      /* Empty grid hover animations */
+      /* Grid hover animations */
       &--hover-x {
         &::after {
-          transition: all 0.3s;
           color: $theme-dark;
           opacity: 0;
           content: 'X';
           -webkit-text-stroke: 1px $theme-blue;
-          // text-shadow: -1px 0 $theme-blue, 0 1px $theme-blue, 1px 0 $theme-blue, 0 -1px $theme-blue;
+          transition: all 0.3s;
         }
         &:hover {
           &::after {
@@ -362,12 +395,11 @@ body {
       }
       &--hover-o {
         &::after {
-          transition: all 0.3s;
           color: $theme-dark;
           opacity: 0;
           content: 'O';
           -webkit-text-stroke: 1px $theme-yellow;
-          // text-shadow: -1px 0 $theme-blue, 0 1px $theme-blue, 1px 0 $theme-blue, 0 -1px $theme-blue;
+          transition: all 0.3s;
         }
         &:hover {
           &::after {
@@ -375,7 +407,6 @@ body {
           }
         }
       }
-
     }
   }
   footer {
