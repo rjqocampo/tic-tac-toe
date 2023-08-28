@@ -1,0 +1,108 @@
+# Tic-Tac-Toe
+
+Welcome to Tic-Tac-Toe!
+
+This is a simple yet classic implementation of the popular Tic-Tac-Toe game, using HTML, CSS and Javascript. 
+
+Link to live project: https://rjqocampo.github.io/tic-tac-toe/ :point_left:
+
+### Built With
+* HTML
+* CSS
+* Javascript
+* Other tools used:
+  
+  * Github Pages for free hosting
+  * Git for version control
+  * Figma for mockup
+  * Chrome DevTools for debugging
+  * Visual Studio Code for IDE
+
+### Motivation
+To practice and refine my Javascript and CSS fundamentals
+
+### My Learnings
+* Value of conditional statements
+* Value of destructuring assignment syntax
+* Value of Chrome DevTools, specifically the Breakpoints and Watch feature
+* Value of not polluting the namespace
+* Value of SASS mixins and nesting for cleaner CSS
+* Importance of functions, event listeners and DOM manipulation
+* Importance of animations to give user feedback
+* Importance of making functions small and modular for code reusabality and maintainability
+* Usefulness of event delegation in handling multiple listeners
+* Usefulness of design patterns to help organize code
+* Strengths of the Revealing Module Pattern in encapsulating and securing code via scopes and closures
+
+### Known Issues
+* Not mobile responsive
+
+### Prospective Updates
+* Make mobile responsive
+* Add a 'VS AI' feature
+
+# Getting Started
+You can start the project in two ways:
+
+**Visit the live website: https://rjqocampo.github.io/tic-tac-toe/**
+  
+_or_
+
+**Clone the repository**
+
+  1. Navigate to the directory where you want to clone the repository
+  2. Clone the repository using Git. Open your terminal and enter the following:
+
+      ```
+     git clone git@github.com:rjqocampo/tic-tac-toe.git
+      ```
+      > [!NOTE]  
+      > The method above is cloning using an SSH key. If you do not have an SSH key, there are other methods to clone a repository. [Click here](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) to read more.
+
+  4. Open the directory where you cloned the repository
+  5. Select the `index.html` file and open in your preferred web browser
+
+# Usage
+### Game Rules
+
+The rules of the Tic-Tac-Toe game are the same as always. 
+
+* The game is played on a 3x3 grid
+* Two players take turns to mark their symbols (X and O) on empty grids
+* The first player to get three of their symbols in a row (horizontally, vertically, or diagonally) wins
+* If all cells are filled and no player has won, the game ends in a draw
+
+### How-to
+
+1. Choose your mark and then click the start game button to begin.
+
+2. The game displays the current state of the board and inform who's the current player. The scores are also displayed on the lower side of screen. 
+
+3. Click the empty grid where you want to place your mark.
+
+4. The first to get 3-in-a-row wins the round. You can choose to play again after.
+
+# Contributions
+
+I owe my learnings to the open source community. It's an amazing place to learn, inspire and create.  So I welcome any contributions from the community that can help enhance this project. If you're interested in contributing, here are a few pointers to get you started:
+
+* **Fork the Repository:** Fork this repository to your GitHub account.
+* **Make Changes:** Implement your changes, whether they're bug fixes, new features, or improvements.
+* **Create a Pull Request:** Submit a pull request to the original repository. Provide a clear description of your changes.
+* **Merge:** Once approved, your changes will be merged into the project.
+
+Thank you for your contributions and I appreciate all interests in making this project better for everyone. 
+
+If you have any questions, feel free to contact me.
+
+# Acknowledgement
+
+Thank you to [Frontend Mentor](https://www.frontendmentor.io/challenges/tic-tac-toe-game-Re7ZF_E2v) for the design
+
+Thank you to [Google Fonts](https://fonts.google.com/) for the web fonts
+
+# Contacts
+
+Email: rjqocampo@gmail.com
+
+Linkedin: https://www.linkedin.com/in/rodjohnocampo/
