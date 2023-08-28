@@ -295,7 +295,7 @@ body {
       height: 40px;
       width: 110px;
       border-radius: 8px;
-      box-shadow: 0px 5px 1px #111e24;
+      box-shadow: 0px 3px 1px #111e24;
       background-color: $theme-dark;
       display: grid;
       align-items: center;
@@ -346,15 +346,19 @@ body {
     }
   }
   footer {
+    padding: 0px 20px;
+
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(100px, 180px));
+    justify-content: center;
     justify-items: center;
     align-self: start;
+    gap: 15px;
     div {
       color: $font-dark;
-      width: 100px;
-      height: 50px;
-      border-radius: 12px;;
+      height: 60px;
+      width: 100%;
+      border-radius: 8px;;
 
       display: grid;
       justify-items: center;
@@ -370,14 +374,12 @@ body {
     }
     .x-score {
       background-color: $theme-blue;
-      justify-self: end;
     }
     .tie-score {
       background-color: $theme-light;
     }
     .o-score {
       background-color: $theme-yellow;
-      justify-self: start;
     }
   }
 }

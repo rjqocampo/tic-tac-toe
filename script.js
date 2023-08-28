@@ -1,6 +1,6 @@
 const gameModule = (function() {
   let grids = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-  const players = [
+  let players = [
     {
       name: 'Player 1',
       mark: 'X',
@@ -110,6 +110,40 @@ const gameModule = (function() {
     grids = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   }
 
+  function resetAll() {
+    console.table(grids);
+    console.table(players);
+    console.table(scores);
+    console.log(activePlayer);
+    console.log(roundResults);
+
+    grids = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+    players = [
+      {
+        name: 'Player 1',
+        mark: 'X',
+      },
+      {
+        name: 'Player 2',
+        mark: 'O',
+      }
+    ];
+    scores = {
+      x: 0,
+      o: 0,
+      tie: 0
+    }
+    activePlayer = players[0];
+    roundResults = null;
+
+    console.log('RESET')
+    console.table(grids);
+    console.table(players);
+    console.table(scores);
+    console.log(activePlayer);
+    console.log(roundResults);
+  }
+
   return {
     getGrids,
     getActivePlayer, 
@@ -118,7 +152,8 @@ const gameModule = (function() {
     chooseMark, 
     placeMark, 
     checkWinner,
-    resetGrids
+    resetGrids,
+    resetAll
   }
 })();
 
@@ -130,6 +165,7 @@ const displayModule = (function() {
   const buttonPlayAgain = document.querySelector('.button-play-again');
   const buttonStartGame = document.querySelector('.button-start-game');
   const buttonChooseMark = document.querySelector('.dialog-pre-round > div > div');
+  const buttonHome = document.querySelectorAll('.button-home');
   const xScore = document.querySelector('.x-score h3');
   const oScore = document.querySelector('.o-score h3');
   const tieScore = document.querySelector('.tie-score h3');
@@ -137,7 +173,20 @@ const displayModule = (function() {
   const main = document.querySelector('main');
 
   buttonChooseMark.addEventListener('click', gameModule.chooseMark);
-  buttonStartGame.addEventListener('click', () => dialogPreRound.close());
+  buttonStartGame.addEventListener('click', () => {
+    dialogPreRound.close();
+    dialogPostRound.close();
+    removeGrids();
+    showTurn();
+    showGrids();
+    showScores();
+  });
+  buttonHome.forEach((button) => {
+    button.addEventListener('click', () => {
+      gameModule.resetAll();
+      dialogPreRound.showModal();
+    })
+  })
   buttonPlayAgain.addEventListener('click', () => {
     gameModule.resetGrids();
     dialogPostRound.close();
@@ -219,7 +268,4 @@ const displayModule = (function() {
   }
 
   dialogPreRound.showModal();
-  showTurn();
-  showGrids();
-  showScores();
 })();
