@@ -65,7 +65,6 @@ const gameModule = (function() {
   function checkWinner() {
     for (let i = 0; i < 9; i += 3) {
       if (grids[i] === grids[i + 1] && grids[i] === grids[i + 2] && grids[i] !== 0) {
-        console.log('ROW');
         updateScores(getActivePlayer().mark);
         return;
       }
@@ -73,7 +72,6 @@ const gameModule = (function() {
 
     for (let i = 0; i < 3; i++) {
       if (grids[i] === grids[i + 3] && grids[i] === grids[i + 6] && grids[i] !== 0) {
-        console.log('COLUMN');
         updateScores(getActivePlayer().mark);
         return;
       }
@@ -81,29 +79,23 @@ const gameModule = (function() {
      
     if ((grids[0] === grids[4] && grids[0] === grids[8] && grids[0] !== 0) ||
         (grids[2] === grids[4] && grids[2] === grids[6] && grids[2] !== 0)) {
-      console.log('DIAGONAL');
       updateScores(getActivePlayer().mark);
       return;
     } else if (grids.every((grid) => grid !== 0)) {
-      console.log('DRAW');
       updateScores('TIE');
     }
   }
 
   function updateScores(mark) {
     if (mark === 'X') {
-      console.log('Add score to X');
       scores.x++;
     } else if (mark === 'O') {
-      console.log('Add score to O');
       scores.o++;
     } else {
-      console.log('Add score to TIE');
       scores.tie++;
     }
     
     roundResults = mark;
-    console.log(roundResults);
   }
 
   function resetGrids() {
@@ -111,12 +103,6 @@ const gameModule = (function() {
   }
 
   function resetAll() {
-    console.table(grids);
-    console.table(players);
-    console.table(scores);
-    console.log(activePlayer);
-    console.log(roundResults);
-
     grids = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     players = [
       {
@@ -135,13 +121,6 @@ const gameModule = (function() {
     }
     activePlayer = players[0];
     roundResults = null;
-
-    console.log('RESET')
-    console.table(grids);
-    console.table(players);
-    console.table(scores);
-    console.log(activePlayer);
-    console.log(roundResults);
   }
 
   return {
@@ -208,7 +187,6 @@ const displayModule = (function() {
 
     let results = gameModule.getRoundResults();
     if (results !== null) {
-      console.log(results);
       showPostRound(results);
     }
   })
@@ -257,7 +235,6 @@ const displayModule = (function() {
   }
 
   function showPostRound(results) {
-    console.log(`Show post-round for ${results}`);
     if (results === 'X') {
       dialogPostRoundHeader.setAttribute('class', 'dialog-post-round__header dialog-post-round__header--x');
       dialogPostRoundHeader.textContent = 'GREAT JOB!';
