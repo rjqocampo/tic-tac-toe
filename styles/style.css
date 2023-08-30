@@ -138,21 +138,36 @@ body {
   border: none;
   outline: 0;
 }
-.dialog-pre-round > button {
-  background-color: #f2b138;
+.dialog-pre-round .button-game-mode {
   border: none;
   border-radius: 8px;
-  padding: 10px 40px;
+  height: 42px;
+  width: 200px;
   margin-top: 20px;
-  box-shadow: 0px 4px 1px #a77a27;
   cursor: pointer;
   transition: all 0.2s;
 }
-.dialog-pre-round > button:hover {
+.dialog-pre-round .button-game-mode[data-vs=ai] {
+  background-color: #34c3be;
+  box-shadow: 0px 4px 1px #21807b;
+}
+.dialog-pre-round .button-game-mode[data-vs=ai]:hover {
+  transform: translateY(2px);
+  box-shadow: 0px 2px 1px #21807b;
+}
+.dialog-pre-round .button-game-mode[data-vs=ai]:active {
+  transform: translateY(4px);
+  box-shadow: 0px 0px 1px #21807b;
+}
+.dialog-pre-round .button-game-mode[data-vs=player] {
+  background-color: #f2b138;
+  box-shadow: 0px 4px 1px #a77a27;
+}
+.dialog-pre-round .button-game-mode[data-vs=player]:hover {
   transform: translateY(2px);
   box-shadow: 0px 2px 1px #a77a27;
 }
-.dialog-pre-round > button:active {
+.dialog-pre-round .button-game-mode[data-vs=player]:active {
   transform: translateY(4px);
   box-shadow: 0px 0px 1px #a77a27;
 }
@@ -168,6 +183,7 @@ body {
 .dialog-post-round[open] {
   display: grid;
   justify-content: center;
+  justify-items: center;
   align-content: center;
 }
 .dialog-post-round::backdrop {
@@ -295,60 +311,67 @@ body {
 }
 .tic-tac-toe header {
   display: grid;
+  justify-items: center;
+  align-self: end;
+}
+.tic-tac-toe header div {
+  width: 350px;
+  padding: 0px 20px;
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
   justify-items: center;
   align-items: center;
   align-self: end;
+  gap: 20px;
 }
-.tic-tac-toe header h1 {
+.tic-tac-toe header div h1 {
   font-size: 2.5rem;
   font-weight: bold;
-  justify-self: end;
 }
-.tic-tac-toe header h1 span:first-child {
+.tic-tac-toe header div h1 span:first-child {
   color: #34c3be;
 }
-.tic-tac-toe header h1 span:last-child {
+.tic-tac-toe header div h1 span:last-child {
   color: #f2b138;
 }
-.tic-tac-toe header p {
-  font-size: 1.2rem;
+.tic-tac-toe header div p {
+  font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.6235294118);
   text-align: center;
   height: 40px;
-  width: 200px;
+  width: 100px;
   border-radius: 8px;
   box-shadow: 0px 3px 1px #111e24;
   background-color: #1e3640;
   display: grid;
   align-items: center;
 }
-.tic-tac-toe header button {
+.tic-tac-toe header div button {
   background-color: #a9bec8;
   border: none;
   border-radius: 4px;
   box-shadow: 0px 3px 1px #7a868d;
-  justify-self: start;
   padding: 0;
   display: flex;
   align-items: center;
   cursor: pointer;
   transition: all 0.2s;
 }
-.tic-tac-toe header button img {
+.tic-tac-toe header div button img {
   height: 32px;
   width: 32px;
   padding: 5px;
 }
-.tic-tac-toe header button:hover {
+.tic-tac-toe header div button:hover {
   transform: translateY(2px);
   box-shadow: 0px 2px 1px #7a868d;
 }
-.tic-tac-toe header button:active {
+.tic-tac-toe header div button:active {
   transform: translateY(4px);
   box-shadow: 0px 0px 1px #7a868d;
 }
 .tic-tac-toe main {
+  margin: 10px 0px 30px;
   display: grid;
   grid-template: repeat(3, 130px)/repeat(3, 130px);
   justify-content: center;
@@ -400,7 +423,7 @@ body {
 .tic-tac-toe footer {
   padding: 0px 20px;
   display: grid;
-  grid-template-columns: repeat(3, minmax(100px, 180px));
+  grid-template-columns: repeat(3, minmax(50px, 180px));
   justify-content: center;
   justify-items: center;
   align-self: start;
@@ -409,8 +432,8 @@ body {
 .tic-tac-toe footer div {
   color: #1a2b33;
   height: 60px;
-  width: 100%;
   border-radius: 8px;
+  width: 100%;
   display: grid;
   justify-items: center;
 }
@@ -431,4 +454,15 @@ body {
 }
 .tic-tac-toe footer .o-score {
   background-color: #f2b138;
+}
+
+/* -------- Breakpoints -------- */
+@media all and (max-width: 480px) {
+  .tic-tac-toe main {
+    grid-template: repeat(3, 95px)/repeat(3, 95px);
+    gap: 15px;
+  }
+  .tic-tac-toe main .grid {
+    font-size: 4.5rem;
+  }
 }/*# sourceMappingURL=style.css.map */

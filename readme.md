@@ -2,7 +2,7 @@
 
 Welcome to Tic-Tac-Toe!
 
-This is a simple yet classic implementation of the popular Tic-Tac-Toe game, using HTML, CSS and Javascript. 
+This is a simple implementation of the classic Tic-Tac-Toe game, created using HTML, CSS, and JavaScript. The project follows the Revealing Module Pattern, a design pattern that helps organize code and encapsulate functionality.
 
 Link to live project: https://rjqocampo.github.io/tic-tac-toe/ :point_left:
 
@@ -35,13 +35,13 @@ To practice and refine my Javascript and CSS fundamentals
 * Strengths of the Revealing Module Pattern in encapsulating and securing code via scopes and closures
 
 ### Known Issues
-* Not mobile responsive
+* AI logic is random
 
 Found a bug or issue in the project? [Click here](https://github.com/rjqocampo/tic-tac-toe#contributions).
 
 ### Prospective Updates
-* Make mobile responsive
-* Add a 'VS AI' feature
+* Better algorithm for AI logic
+* Add animation when there's a 3-in-a-row grid instead of just post-round dialog pop-up for better UX
 
 Looking to contribute ideas or features to the project? [Click here](https://github.com/rjqocampo/tic-tac-toe#contributions).
 
@@ -74,13 +74,24 @@ The rules of the Tic-Tac-Toe game are the same as always.
 * The game is played on a 3x3 grid
 * Two players take turns to mark their symbols (X and O) on empty grids
 * The first player to get three of their symbols in a row (horizontally, vertically, or diagonally) wins
-* If all cells are filled and no player has won, the game ends in a draw
+* If all grids are filled and no player has won, the game ends in a draw
+
+### Features
+
+*User Interface*
+The game has an easy-to-understand layout that displays the current state of the board and inform who's the current active player. Additionally, the current score is tracked, allowing players to keep track of their victories.
+
+*Play against AI or Player*
+You can choose to play against a local player or try going against an AI.
+
+*Mobile Responsive*
+The game is responsive across various screen sizes: from desktop, tablets, or mobile. 
 
 ### How-to
 
-1. Choose your mark and then click the start game button to begin.
+1. Choose your mark.
 
-2. The game displays the current state of the board and inform who's the current player. The scores are also displayed on the lower side of screen. 
+2. Choose which game mode to play: VS AI or VS PLAYER.
 
 3. Click the empty grid where you want to place your mark.
 

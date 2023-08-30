@@ -17,15 +17,15 @@ const gameModule = (function() {
     tie: 0
   }
   let activePlayer = players[0];
-  let roundResults = null;
+  let roundWinner = null;
 
   const getGrids = () => grids;
   const getActivePlayer = () => activePlayer;
   const getScores = () => scores;
-  const getRoundResults = () => {
-    const x = roundResults;
-    roundResults = null;
-    return x;
+  const getWinner = () => {
+    const saveWinner = roundWinner;
+    roundWinner = null;
+    return saveWinner;
   }
 
   function setActivePlayer() {
@@ -60,7 +60,7 @@ const gameModule = (function() {
 
       if (checkWinner()) {
         return;
-      } else {
+      } else if (!checkWinner()) {
         switchActivePlayer();
         checkActivePlayerIsAI();
       }
@@ -84,8 +84,6 @@ const gameModule = (function() {
   }
 
   function aiPlaceMark() {
-    console.log('AI placing mark');
-
     let arrayOfEmptyGrids = [];
     let random;
      
@@ -97,21 +95,18 @@ const gameModule = (function() {
     })
 
     random = Math.floor(Math.random() * arrayOfEmptyGrids.length);
-    console.log(arrayOfEmptyGrids);
 
     if(getActivePlayer().mark === 'X'){
       grids[arrayOfEmptyGrids[random]] = 1;
     } else if (getActivePlayer().mark === 'O') {
       grids[arrayOfEmptyGrids[random]] = 2;
     }
-    console.log(grids);
   }
 
   function checkWinner() {
     for (let i = 0; i < 9; i += 3) {
       if (grids[i] === grids[i + 1] && grids[i] === grids[i + 2] && grids[i] !== 0) {
         updateScores(getActivePlayer().mark);
-        console.log(grids[i]);
         return true;
       }
     }
@@ -137,14 +132,18 @@ const gameModule = (function() {
 
   function updateScores(mark) {
     if (mark === 'X') {
+      roundWinner = getActivePlayer();
       scores.x++;
+      return;
     } else if (mark === 'O') {
+      roundWinner = getActivePlayer();
       scores.o++;
+      return;
     } else {
+      roundWinner = 'TIE'
       scores.tie++;
+      return
     }
-    
-    roundResults = mark;
   }
 
   function resetGrids() {
@@ -177,7 +176,7 @@ const gameModule = (function() {
     getGrids,
     getActivePlayer, 
     getScores,
-    getRoundResults,
+    getWinner,
     chooseMark, 
     placeMark, 
     checkWinner,
@@ -185,6 +184,7 @@ const gameModule = (function() {
     toggleAI,
     resetGrids,
     resetAll,
+    switchActivePlayer
   }
 })();
 
@@ -208,12 +208,10 @@ const displayModule = (function() {
     button.addEventListener('click', (e) => {
       gameModule.toggleAI(e);
       gameModule.checkActivePlayerIsAI();
-
       removeGrids();
       showGrids();
       showWhosTurn();
       showScores();
-
       setTimeout(() => {
         dialogPreRound.close();
         dialogPostRound.close();
@@ -222,18 +220,19 @@ const displayModule = (function() {
   })
   buttonHome.forEach((button) => {
     button.addEventListener('click', () => {
+      gameModule.resetAll();
       setTimeout(() => {
-        gameModule.resetAll();
         dialogPreRound.showModal();
       }, 300)
     })
   })
   buttonPlayAgain.addEventListener('click', () => {
+    gameModule.checkActivePlayerIsAI();
+    gameModule.resetGrids();
+    removeGrids();
+    showGrids();
     setTimeout(() => {
-      gameModule.resetGrids();
       dialogPostRound.close();
-      removeGrids();
-      showGrids();
     }, 300)
   })
   main.addEventListener('click', (e) => {
@@ -246,9 +245,9 @@ const displayModule = (function() {
     showWhosTurn();
     showScores();
 
-    let results = gameModule.getRoundResults();
-    if (results !== null) {
-      showPostRound(results);
+    let winner = gameModule.getWinner();
+    if (winner !== null) {
+      showPostRound(winner);
     }
   })
 
@@ -285,7 +284,7 @@ const displayModule = (function() {
   }
 
   function showWhosTurn() {
-    whosTurn.textContent = `PLAYER ${gameModule.getActivePlayer().mark} TURN`;
+    whosTurn.textContent = `${gameModule.getActivePlayer().mark} TURN`;
   }
 
   function showScores() {
@@ -295,33 +294,38 @@ const displayModule = (function() {
     tieScore.textContent = tie;
   }
 
-  function showPostRound(results) {
-    if (results === 'X') {
-      dialogPostRoundHeader.setAttribute('class', 'dialog-post-round__header dialog-post-round__header--x');
+  function showPostRound(winner) {
+    if (winner.name === 'Player 1') {
       dialogPostRoundHeader.textContent = 'GREAT JOB!';
+    } else if (winner.name === 'Player 2' && winner.ai === true) {
+      dialogPostRoundHeader.textContent = 'NICE TRY!';
+    } else if (winner.name === 'Player 2' && winner.ai === false) {
+      dialogPostRoundHeader.textContent = 'GREAT JOB!';
+    } else {
+      dialogPostRoundHeader.textContent = 'CLOSE MATCH!'
+    }
+
+    if (winner.mark === 'X') {
+      dialogPostRoundHeader.setAttribute('class', 'dialog-post-round__header dialog-post-round__header--x');
       dialogPostRoundWinner.setAttribute('class', 'dialog-post-round__winner dialog-post-round__winner--x');
       dialogPostRoundWinner.textContent = 'X WINS THE ROUND';
       buttonPlayAgain.setAttribute('class', 'button-play-again button-play-again--x');
-      console.log('X WINS');
-    } else if (results === 'O') {
+    } else if (winner.mark === 'O') {
       dialogPostRoundHeader.setAttribute('class', 'dialog-post-round__header dialog-post-round__header--o');
-      dialogPostRoundHeader.textContent = 'GREAT JOB!';
       dialogPostRoundWinner.setAttribute('class', 'dialog-post-round__winner dialog-post-round__winner--o');
       dialogPostRoundWinner.textContent = 'O WINS THE ROUND';
       buttonPlayAgain.setAttribute('class', 'button-play-again button-play-again--o');
-      console.log('O WINS');
     } else {
       dialogPostRoundHeader.setAttribute('class', 'dialog-post-round__header dialog-post-round__header--tie');
-      dialogPostRoundHeader.textContent = 'CLOSE MATCH!'
       dialogPostRoundWinner.setAttribute('class', 'dialog-post-round__winner dialog-post-round__winner--tie');
       dialogPostRoundWinner.textContent = 'IT\'S A TIE';
       buttonPlayAgain.setAttribute('class', 'button-play-again button-play-again--tie');
-      console.log('TIE');
     }
     
-    setTimeout(() => {dialogPostRound.showModal()}, 500);
-
+    setTimeout(() => {dialogPostRound.showModal()}, 300);
   }
 
   dialogPreRound.showModal();
 })();
+
+// tie result is not getting passed
