@@ -8,6 +8,7 @@ const gameModule = (function() {
     {
       name: 'Player 2',
       mark: 'O',
+      ai: false,
     }
   ];
   let scores = {
@@ -59,7 +60,28 @@ const gameModule = (function() {
       }
       checkWinner();
       switchActivePlayer();
+      checkActivePlayerIsAI();
     }
+  }
+
+  function toggleAI(e) {
+    if (e.target.getAttribute('data-vs') === 'ai') {
+      players[1].ai = true;
+      console.log(players[1]);
+    } else if (e.target.getAttribute('data-vs') === 'player') {
+      players[1].ai = false;
+      console.log(players[1]);
+    }
+  }
+
+  function checkActivePlayerIsAI() {
+    if (getActivePlayer().ai === true) {
+      aiPlaceMark();
+    }
+  }
+
+  function aiPlaceMark() { // might be better placed inside placeMark()
+    console.log('AI placing mark');
   }
 
   function checkWinner() {
@@ -112,6 +134,7 @@ const gameModule = (function() {
       {
         name: 'Player 2',
         mark: 'O',
+        ai: false,
       }
     ];
     scores = {
@@ -131,8 +154,10 @@ const gameModule = (function() {
     chooseMark, 
     placeMark, 
     checkWinner,
+    checkActivePlayerIsAI,
+    toggleAI,
     resetGrids,
-    resetAll
+    resetAll,
   }
 })();
 
@@ -142,7 +167,7 @@ const displayModule = (function() {
   const dialogPostRoundHeader = document.querySelector('.dialog-post-round__header');
   const dialogPostRoundWinner = document.querySelector('.dialog-post-round__winner');
   const buttonPlayAgain = document.querySelector('.button-play-again');
-  const buttonStartGame = document.querySelector('.button-start-game');
+  const buttonChooseMode = document.querySelectorAll('.button-game-mode');
   const buttonChooseMark = document.querySelector('.dialog-pre-round > div > div');
   const buttonHome = document.querySelectorAll('.button-home');
   const xScore = document.querySelector('.x-score h3');
@@ -152,16 +177,24 @@ const displayModule = (function() {
   const main = document.querySelector('main');
 
   buttonChooseMark.addEventListener('click', gameModule.chooseMark);
-  buttonStartGame.addEventListener('click', () => {
-    setTimeout(() => {
-      dialogPreRound.close();
-      dialogPostRound.close();
+  buttonChooseMode.forEach((button) => {
+    button.addEventListener('click', (e) => {
       removeGrids();
-      showWhosTurn();
       showGrids();
+      showWhosTurn();
       showScores();
-    }, 300)
-  });
+
+      gameModule.toggleAI(e);
+      gameModule.checkActivePlayerIsAI();
+
+      setTimeout(() => {
+        dialogPreRound.close();
+        dialogPostRound.close();
+      }, 300)
+
+      console.log(gameModule.getActivePlayer());
+    })
+  })
   buttonHome.forEach((button) => {
     button.addEventListener('click', () => {
       setTimeout(() => {
@@ -181,8 +214,8 @@ const displayModule = (function() {
   main.addEventListener('click', (e) => {
     gameModule.placeMark(e);
     removeGrids();
-    showWhosTurn();
     showGrids();
+    showWhosTurn();
     showScores();
 
     let results = gameModule.getRoundResults();
@@ -190,6 +223,14 @@ const displayModule = (function() {
       showPostRound(results);
     }
   })
+
+  // function setVsMode(e) {
+  //   if (e.target.getAttribute('data-ai')) {
+  //     gameModule.toggleAI(e);
+  //   } else if (!e.target.getAttribute('data-ai')) {
+  //     gameModule.toggleAI(e);
+  //   }
+  // }
 
   function showGrids() {
     let mark = gameModule.getActivePlayer().mark;
