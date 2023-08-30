@@ -1,5 +1,5 @@
 const gameModule = (function() {
-  let grids = [1, 2, 1, 2, 1, 0, 0, 0, 0];
+  let grids = [0, 0, 0, 0, 0, 0, 0, 0, 0];
   let players = [
     {
       name: 'Player 1',
@@ -57,9 +57,13 @@ const gameModule = (function() {
       } else {
         grids[index] = 2;
       }
-      checkWinner();
-      switchActivePlayer();
-      checkActivePlayerIsAI();
+
+      if (checkWinner()) {
+        return;
+      } else {
+        switchActivePlayer();
+        checkActivePlayerIsAI();
+      }
     }
   }
 
@@ -75,7 +79,7 @@ const gameModule = (function() {
     if (getActivePlayer().ai === true) {
       aiPlaceMark();
       checkWinner();
-      // switchActivePlayer();
+      switchActivePlayer();
     }
   }
 
@@ -100,30 +104,35 @@ const gameModule = (function() {
     } else if (getActivePlayer().mark === 'O') {
       grids[arrayOfEmptyGrids[random]] = 2;
     }
+    console.log(grids);
   }
 
   function checkWinner() {
     for (let i = 0; i < 9; i += 3) {
       if (grids[i] === grids[i + 1] && grids[i] === grids[i + 2] && grids[i] !== 0) {
         updateScores(getActivePlayer().mark);
-        return;
+        console.log(grids[i]);
+        return true;
       }
     }
 
     for (let i = 0; i < 3; i++) {
       if (grids[i] === grids[i + 3] && grids[i] === grids[i + 6] && grids[i] !== 0) {
         updateScores(getActivePlayer().mark);
-        return;
+        return true;
       }
     }
      
     if ((grids[0] === grids[4] && grids[0] === grids[8] && grids[0] !== 0) ||
         (grids[2] === grids[4] && grids[2] === grids[6] && grids[2] !== 0)) {
       updateScores(getActivePlayer().mark);
-      return;
+      return true;
     } else if (grids.every((grid) => grid !== 0)) {
       updateScores('TIE');
+      return true;
     }
+
+    return false;
   }
 
   function updateScores(mark) {
@@ -197,13 +206,13 @@ const displayModule = (function() {
   buttonChooseMark.addEventListener('click', gameModule.chooseMark);
   buttonChooseMode.forEach((button) => {
     button.addEventListener('click', (e) => {
+      gameModule.toggleAI(e);
+      gameModule.checkActivePlayerIsAI();
+
       removeGrids();
       showGrids();
       showWhosTurn();
       showScores();
-
-      gameModule.toggleAI(e);
-      gameModule.checkActivePlayerIsAI();
 
       setTimeout(() => {
         dialogPreRound.close();
@@ -310,7 +319,8 @@ const displayModule = (function() {
       console.log('TIE');
     }
     
-    // dialogPostRound.showModal();
+    setTimeout(() => {dialogPostRound.showModal()}, 500);
+
   }
 
   dialogPreRound.showModal();
