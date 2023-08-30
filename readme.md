@@ -2,7 +2,7 @@
 
 Welcome to Tic-Tac-Toe!
 
-This is a simple implementation of the classic Tic-Tac-Toe game, created using HTML, CSS, and JavaScript. The project follows the Revealing Module Pattern, a design pattern that helps organize code and encapsulate functionality.
+This is a simple implementation of the classic Tic-Tac-Toe game, using HTML, CSS, and JavaScript. The project is mobile-responsive and follows the Revealing Module Design Pattern.
 
 Link to live project: https://rjqocampo.github.io/tic-tac-toe/ :point_left:
 
@@ -66,7 +66,22 @@ _or_
   4. Open the directory where you cloned the repository
   5. Select the `index.html` file and open in your preferred web browser
 
+# Features
+
+**User Interface**
+
+The game has an easy-to-understand layout that displays the current state of the board and inform who's the current active player. The score is also tracked, allowing players to keep track of their victories.
+
+**Play against an AI or a Player**
+
+You can choose to play against a local player or try going against an AI.
+
+**Mobile Responsive**
+
+The game is responsive across various screen sizes: from desktop, tablets, or mobile. 
+
 # Usage
+
 ### Game Rules
 
 The rules of the Tic-Tac-Toe game are the same as always. 
@@ -75,17 +90,6 @@ The rules of the Tic-Tac-Toe game are the same as always.
 * Two players take turns to mark their symbols (X and O) on empty grids
 * The first player to get three of their symbols in a row (horizontally, vertically, or diagonally) wins
 * If all grids are filled and no player has won, the game ends in a draw
-
-### Features
-
-*User Interface*
-The game has an easy-to-understand layout that displays the current state of the board and inform who's the current active player. Additionally, the current score is tracked, allowing players to keep track of their victories.
-
-*Play against AI or Player*
-You can choose to play against a local player or try going against an AI.
-
-*Mobile Responsive*
-The game is responsive across various screen sizes: from desktop, tablets, or mobile. 
 
 ### How-to
 
