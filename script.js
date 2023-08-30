@@ -1,5 +1,5 @@
 const gameModule = (function() {
-  let grids = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+  let grids = [1, 2, 1, 2, 1, 0, 0, 0, 0];
   let players = [
     {
       name: 'Player 1',
@@ -50,10 +50,9 @@ const gameModule = (function() {
 
   function placeMark(e) {
     let index = e.target.getAttribute('data-index');
-    let mark = getActivePlayer().mark;
 
     if (grids[index] === 0) {
-      if (mark === 'X') {
+      if (getActivePlayer().mark === 'X') {
         grids[index] = 1;
       } else {
         grids[index] = 2;
@@ -67,21 +66,40 @@ const gameModule = (function() {
   function toggleAI(e) {
     if (e.target.getAttribute('data-vs') === 'ai') {
       players[1].ai = true;
-      console.log(players[1]);
     } else if (e.target.getAttribute('data-vs') === 'player') {
       players[1].ai = false;
-      console.log(players[1]);
     }
   }
 
   function checkActivePlayerIsAI() {
     if (getActivePlayer().ai === true) {
       aiPlaceMark();
+      checkWinner();
+      // switchActivePlayer();
     }
   }
 
-  function aiPlaceMark() { // might be better placed inside placeMark()
+  function aiPlaceMark() {
     console.log('AI placing mark');
+
+    let arrayOfEmptyGrids = [];
+    let random;
+     
+    grids.forEach((grid, index) => {
+      if (grid === 0) {
+        let emptyGrid = index;
+        arrayOfEmptyGrids.push(emptyGrid);
+      }
+    })
+
+    random = Math.floor(Math.random() * arrayOfEmptyGrids.length);
+    console.log(arrayOfEmptyGrids);
+
+    if(getActivePlayer().mark === 'X'){
+      grids[arrayOfEmptyGrids[random]] = 1;
+    } else if (getActivePlayer().mark === 'O') {
+      grids[arrayOfEmptyGrids[random]] = 2;
+    }
   }
 
   function checkWinner() {
@@ -191,8 +209,6 @@ const displayModule = (function() {
         dialogPreRound.close();
         dialogPostRound.close();
       }, 300)
-
-      console.log(gameModule.getActivePlayer());
     })
   })
   buttonHome.forEach((button) => {
@@ -212,7 +228,10 @@ const displayModule = (function() {
     }, 300)
   })
   main.addEventListener('click', (e) => {
-    gameModule.placeMark(e);
+    if (!gameModule.getActivePlayer().ai === true) {
+      gameModule.placeMark(e);
+    }
+
     removeGrids();
     showGrids();
     showWhosTurn();
@@ -223,14 +242,6 @@ const displayModule = (function() {
       showPostRound(results);
     }
   })
-
-  // function setVsMode(e) {
-  //   if (e.target.getAttribute('data-ai')) {
-  //     gameModule.toggleAI(e);
-  //   } else if (!e.target.getAttribute('data-ai')) {
-  //     gameModule.toggleAI(e);
-  //   }
-  // }
 
   function showGrids() {
     let mark = gameModule.getActivePlayer().mark;
@@ -282,20 +293,24 @@ const displayModule = (function() {
       dialogPostRoundWinner.setAttribute('class', 'dialog-post-round__winner dialog-post-round__winner--x');
       dialogPostRoundWinner.textContent = 'X WINS THE ROUND';
       buttonPlayAgain.setAttribute('class', 'button-play-again button-play-again--x');
+      console.log('X WINS');
     } else if (results === 'O') {
       dialogPostRoundHeader.setAttribute('class', 'dialog-post-round__header dialog-post-round__header--o');
       dialogPostRoundHeader.textContent = 'GREAT JOB!';
       dialogPostRoundWinner.setAttribute('class', 'dialog-post-round__winner dialog-post-round__winner--o');
       dialogPostRoundWinner.textContent = 'O WINS THE ROUND';
       buttonPlayAgain.setAttribute('class', 'button-play-again button-play-again--o');
+      console.log('O WINS');
     } else {
       dialogPostRoundHeader.setAttribute('class', 'dialog-post-round__header dialog-post-round__header--tie');
       dialogPostRoundHeader.textContent = 'CLOSE MATCH!'
       dialogPostRoundWinner.setAttribute('class', 'dialog-post-round__winner dialog-post-round__winner--tie');
       dialogPostRoundWinner.textContent = 'IT\'S A TIE';
       buttonPlayAgain.setAttribute('class', 'button-play-again button-play-again--tie');
+      console.log('TIE');
     }
-    dialogPostRound.showModal();
+    
+    // dialogPostRound.showModal();
   }
 
   dialogPreRound.showModal();
