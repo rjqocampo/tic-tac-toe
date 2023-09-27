@@ -34,6 +34,7 @@ $font-black: #000000;
 /* -------- CSS Reset -------- */
 *, *::before, *::after {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html, body, div, span, applet, object, iframe,

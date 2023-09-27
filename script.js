@@ -327,5 +327,3 @@ const displayModule = (function() {
 
   dialogPreRound.showModal();
 })();
-
-// tie result is not getting passed

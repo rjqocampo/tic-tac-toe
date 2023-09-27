@@ -22,12 +22,11 @@ Link to live project: https://rjqocampo.github.io/tic-tac-toe/ :point_left:
 To practice and refine my Javascript and CSS fundamentals
 
 ### My Learnings
-* Value of conditional statements
 * Value of destructuring assignment syntax
 * Value of Chrome DevTools, specifically the Breakpoints and Watch feature
 * Value of not polluting the global namespace
 * Value of SASS mixins and nesting for cleaner CSS
-* Importance of functions, event listeners and DOM manipulation
+* Importance of Javascript fundamentals
 * Importance of animations to give user feedback
 * Importance of making functions small and modular for code reusabality and maintainability
 * Usefulness of event delegation in handling multiple listeners
@@ -133,6 +132,8 @@ Thank you for your contributions and I appreciate all interests in making this p
 If you have any questions, feel free to contact me.
 
 # Acknowledgement
+
+Thank you to [Github Pages](https://pages.github.com/) for the free hosting
 
 Thank you to [Frontend Mentor](https://www.frontendmentor.io/challenges/tic-tac-toe-game-Re7ZF_E2v) for the design
 
